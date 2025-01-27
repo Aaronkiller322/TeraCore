@@ -1,0 +1,10 @@
+command:
+  # Hilfe-Nachricht, die den Spielern erklärt, wie der Befehl verwendet wird
+  help: '%teracore_prefix% &e❓ &7/motd <1/2> <Text>'
+  
+  args1:
+    # Nachricht, die angezeigt wird, wenn der Spieler den Befehl erfolgreich ausführt
+    usage: '%teracore_prefix% &7Die MOTD-Linie %line% wurde aktualisiert! &a✅'
+    
+    # Berechtigung, die erforderlich ist, um diesen Befehl auszuführen
+    permission: 'teracore.motd'

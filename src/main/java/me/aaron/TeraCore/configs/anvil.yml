@@ -1,0 +1,10 @@
+command:
+  # Nachricht, die angezeigt wird, wenn der Spieler Hilfe zum /anvil-Befehl anfordert
+  help: '%teracore_prefix% &e❓ &7/anvil'
+
+  args0:
+    # Nachricht, die angezeigt wird, wenn der Amboss erfolgreich geöffnet wird
+    usage: '%teracore_prefix% &7Der Amboss wurde erfolgreich geöffnet! &e⚒'
+
+    # Berechtigung, die erforderlich ist, um den /anvil-Befehl zu verwenden
+    permission: 'teracore.anvil'

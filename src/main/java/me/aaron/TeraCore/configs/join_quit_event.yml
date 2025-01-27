@@ -1,0 +1,13 @@
+join:
+  # Aktiviert oder deaktiviert die Nachricht, wenn ein Spieler dem Server beitritt
+  enable: true
+  
+  # Nachricht, die beim Beitritt eines Spielers angezeigt wird
+  message: "%teracore_prefix% &e✨ &7Der Spieler &e%player% &7ist dem Server beigetreten!"
+
+quit:
+  # Aktiviert oder deaktiviert die Nachricht, wenn ein Spieler den Server verlässt
+  enable: true
+  
+  # Nachricht, die beim Verlassen eines Spielers angezeigt wird
+  message: "%teracore_prefix% &e✨ &7Der Spieler &e%player% &7hat den Server verlassen!"

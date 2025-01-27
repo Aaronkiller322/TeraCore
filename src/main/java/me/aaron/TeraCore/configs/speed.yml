@@ -1,0 +1,19 @@
+command:
+  # Hilfe-Nachricht, die den Spielern erklärt, wie der Befehl verwendet wird
+  help: '%teracore_prefix% &e❓ &7/speed <1-5>'
+  
+  # Argument 1 (Setzt den Speed des Spielers auf einen Wert zwischen 1 und 5)
+  args1:
+    # Nachricht, die anzeigt, dass der eigene Speed erfolgreich gesetzt wurde
+    usage: '%teracore_prefix% &e⚡ &7Dein Speed wurde auf &e%speed% &7gesetzt!'
+    
+    # Berechtigung, die erforderlich ist, um den Speed für sich selbst zu setzen
+    permission: 'teracore.speed.%speed%'
+
+  # Argument 2 (Setzt den Speed eines anderen Spielers auf einen Wert zwischen 1 und 5)
+  args2:
+    # Nachricht, die anzeigt, dass der Speed eines anderen Spielers gesetzt wurde
+    usage: '%teracore_prefix% &e⚡ &7Der Speed von &e%trust% &7wurde auf &e%speed% &7gesetzt!'
+    
+    # Berechtigung, die erforderlich ist, um den Speed eines anderen Spielers zu setzen
+    permission: 'teracore.speed.%speed%.other'
