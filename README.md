@@ -8,31 +8,11 @@ Außerdem bietet TeraCore:
 - **HexColor-Support** (Hex-Farben in Texten)
 - Eigene **Placeholder** zur individuellen Gestaltung von Nachrichten
 
+
+🎉 **TeraCore – Deine zentrale Schaltstelle für alles Wichtige auf dem Server.**  
+Modular, leistungsfähig und modern.
 ---
 
-## ✅ Beispielcode
-
-```java
-public void Test(Player player) {
-
-    String text = "%teracore_prefix% &eTestnachricht mit Info: ";
-    String klick = "&6[Klick]";
-    String hover = "#FF4511 Coole Hexfarbe \n &cKlicke, um den Text zu kopieren";
-    String copy = "Coole Nachricht, die kopiert wurde";
-
-    TeraText teraText = new TeraText(text);
-    TeraHoverText teraHoverText = new TeraHoverText(klick);
-    teraHoverText.setHoverText(hover);
-    teraHoverText.setCopyText(copy);
-
-    teraText.addHoverText(teraHoverText);
-    teraText.addText("&e!");
-
-    teraText.sendMessage(player);
-}
-```
-
----
 
 ## 🎯 Placeholder-Tabelle
 
@@ -86,5 +66,66 @@ public void Test(Player player) {
 
 ---
 
-🎉 **TeraCore – Deine zentrale Schaltstelle für alles Wichtige auf dem Server.**  
-Modular, leistungsfähig und modern.
+#### ✅ TeraCore Api's
+
+## TeraText
+```java
+public void sendHoverText(Player player) {
+
+    String text = "%teracore_prefix% &eTestnachricht mit Info: ";
+    String klick = "&6[Klick]";
+    String hover = "#FF4511 Coole Hexfarbe \n &cKlicke, um den Text zu kopieren";
+    String copy = "Coole Nachricht, die kopiert wurde";
+
+    TeraText teraText = new TeraText(text);
+    TeraHoverText teraHoverText = new TeraHoverText(klick);
+    teraHoverText.setHoverText(hover);
+    teraHoverText.setCopyText(copy);
+
+    teraText.addHoverText(teraHoverText);
+    teraText.addText("&e!");
+
+    teraText.sendMessage(player);
+}
+```
+
+## WarpManager
+```java
+public void moveWarp(String warp, Location location){
+	WarpManager manager = new WarpManager();
+	if(!manager.existWarp(warp)){
+		return;
+	}
+	manager.delWarp(warp);
+	manager.setWarp(warp, location);
+
+	Location warpLocation = manager.getWarp(warp);
+
+	for(String warps : manager.getWarps()){
+		Bukkit.broadcastMessage("Es wurde ein Warp gefunden: " + warp);
+		Bukkit.broadcastMessage("Warp befindet sich in der Welt namens: " + warpLocation.getWorld().getName());
+	}
+}
+```
+
+## HomeManager
+```java
+public void moveHome(Player player, String home, Location location){
+	HomeManager manager = new HomeManager(player.getUniqueId());
+	if(!manager.existHome(home)){
+		return;
+	}
+	manager.delHome(home);
+	manager.setHome(home, location);
+	
+	Location homeLocation = manager.setHome(home);
+	
+	for(String homes : manager.getHomes()){
+		Bukkit.broadcastMessage("Es wurde ein home gefunden: " + homes);
+		Bukkit.broadcastMessage("Warp befindet sich in der Welt namens: " + homeLocation.getWorld().getName());
+	}
+}
+```
+
+
+---

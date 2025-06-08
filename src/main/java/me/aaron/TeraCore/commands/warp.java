@@ -58,8 +58,8 @@ public class warp implements CommandExecutor, TabCompleter {
 			if (command.getName().equalsIgnoreCase("warp")) {
 
 				if (args.length == 0) {
-					ArrayList<String> warps = new WarpManager().getWarp();
-					if(warps.size() < 1) {
+					ArrayList<String> warps = new WarpManager().getWarps();
+					if (warps.size() < 1) {
 						String empty = PlaceHolder.replacePlaceholder(config.getString("command.list.empty"));
 						player.sendMessage(empty);
 						return true;
@@ -88,7 +88,7 @@ public class warp implements CommandExecutor, TabCompleter {
 						return true;
 					}
 					Location location = manager.getWarp(warp);
-					
+
 					player.teleport(location);
 					player.sendMessage(PlaceHolder
 							.replacePlaceholder(config.getString("command.list.teleport").replace("%warp%", warp)));
@@ -147,6 +147,7 @@ public class warp implements CommandExecutor, TabCompleter {
 		return false;
 	}
 
+
 	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 		List<String> tab = new ArrayList<>();
 		if (sender instanceof Player) {
@@ -164,7 +165,7 @@ public class warp implements CommandExecutor, TabCompleter {
 					List<String> end = new ArrayList<>();
 
 					WarpManager manager = new WarpManager();
-					for (String warp : manager.getWarp()) {
+					for (String warp : manager.getWarps()) {
 						tab.add(warp);
 					}
 					for (int i = 0; i < tab.size(); i++) {

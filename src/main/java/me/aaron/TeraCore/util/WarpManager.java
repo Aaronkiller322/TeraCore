@@ -61,7 +61,7 @@ public class WarpManager {
 		return null;
 	}
 	
-	public ArrayList<String> getWarp(){
+	public ArrayList<String> getWarps(){
 		ArrayList<String> list = new ArrayList<String>();
 		try {
 			for(String warps : config.getConfigurationSection("warps.").getKeys(false)) {

@@ -79,6 +79,7 @@ public class home implements CommandExecutor, TabCompleter {
 					return true;
 				}
 				if (args.length == 1) {
+
 					String home = args[0].toLowerCase();
 					HomeManager manager = new HomeManager(player.getUniqueId());
 					if (!manager.existHome(home)) {
