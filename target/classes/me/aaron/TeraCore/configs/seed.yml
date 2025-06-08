@@ -1,0 +1,12 @@
+command:
+  # Hilfe-Nachricht, die den Spielern erklärt, wie der Befehl verwendet wird
+  help: '%teracore_prefix% &e❓ &7Verwendung: &e/seed'
+
+  # Nachricht, die den Seed der Welt anzeigt
+  usage:
+    message: '%teracore_prefix% &e🌱 &7Der Welt-Seed lautet: &e%seed%&7!'
+    seed_color: '&e'
+    hovertext: '§fKlicken, um den Seed zu kopieren'
+  
+  # Berechtigung, die erforderlich ist, um diesen Befehl auszuführen
+  permission: 'teracore.seed'

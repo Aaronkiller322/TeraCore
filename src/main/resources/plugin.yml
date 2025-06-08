@@ -1,0 +1,78 @@
+name: TeraCore
+main: me.aaron.TeraCore.main.TeraMain
+version: 2.5.3
+api-version: 1.21
+author: Aaronkiller322
+depend:
+  - "PlaceholderAPI"
+  - "Vault"
+commands:
+  gamemode:
+    usage: /<command>
+    aliases: gm
+  fly:
+    usage: /<command>
+  time:
+    usage: /<command>
+  day:
+    usage: /<command>
+  night:
+    usage: /<command>
+  weather:
+    usage: /<command>
+  sun:
+    usage: /<command>
+  rain:
+    usage: /<command>
+  thunder:
+    usage: /<command>
+  tphere:
+    usage: /<command>
+  teleport:
+    usage: /<command>
+    aliases: tp
+  speed:
+    usage: /<command>
+  eat:
+    usage: /<command>
+    aliases: food
+  heal:
+    usage: /<command>
+  money:
+    usage: /<command>
+  addmoney:
+    usage: /<command>
+  removemoney:
+    usage: /<command>
+  setmoney:
+    usage: /<command>
+  pay:
+    usage: /<command>
+  skull:
+    usage: /<command>
+  motd:
+    usage: /<command>
+  home:
+    usage: /<command>
+  sethome:
+    usage: /<command>
+  delhome:
+    usage: /<command>
+  movehome:
+    usage: /<command>
+  warp:
+    usage: /<command>
+  setwarp:
+    usage: /<command>
+  delwarp:
+    usage: /<command>
+  kick:
+    usage: /<command>
+  ban:
+    usage: /<command>
+  unban:
+    usage: /<command>
+  tempban:
+    usage: /<command>
+  seed:
+    usage: /<command>

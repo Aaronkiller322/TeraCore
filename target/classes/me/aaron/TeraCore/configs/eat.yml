@@ -1,0 +1,19 @@
+command:
+  # Hilfsnachricht für den /eat-Befehl, die erklärt, wie der Befehl verwendet wird
+  help: '%teracore_prefix% &e❓ &7/eat <Spieler>'
+
+  # Argument 0 (für die Verwendung des /eat-Befehls auf sich selbst)
+  args0:
+    # Nachricht, die angezeigt wird, wenn der Spieler den /eat-Befehl auf sich selbst anwendet
+    usage: '%teracore_prefix% &e🍖 &7Dein Hunger wurde gesättigt!' 
+    
+    # Berechtigung, die der Spieler benötigt, um den /eat-Befehl auf sich selbst anzuwenden
+    permission: 'teracore.eat.usage'
+
+  # Argument 1 (für die Verwendung des /eat-Befehls auf einen anderen Spieler)
+  args1:
+    # Nachricht, die angezeigt wird, wenn der Spieler den /eat-Befehl auf einen anderen Spieler anwendet
+    usage: '%teracore_prefix% &e🍖 &7Der Hunger von &e%player% &7wurde gesättigt!'
+    
+    # Berechtigung, die erforderlich ist, um den /eat-Befehl auf einen anderen Spieler anzuwenden
+    permission: 'teracore.eat.usage.other'

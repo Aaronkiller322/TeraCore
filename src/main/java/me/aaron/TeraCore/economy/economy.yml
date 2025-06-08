@@ -1,0 +1,9 @@
+economy:
+  storage-method: 'LOCAL' # MYSQL / LOCAL
+  data:
+    address: 'localhost'
+    port: 3306
+    database: 'economy'
+    username: 'root'
+    password: '1234' 
+    table: 'player_data'
