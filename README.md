@@ -68,6 +68,7 @@ Modular, leistungsfähig und modern.
 
 # ✅ TeraCore Api's
 
+---
 ## TeraText
 ```java
 public void sendHoverText(Player player) {
@@ -88,7 +89,7 @@ public void sendHoverText(Player player) {
     teraText.sendMessage(player);
 }
 ```
-
+---
 ## WarpManager
 ```java
 public void moveWarp(String warp, Location location){
@@ -107,7 +108,7 @@ public void moveWarp(String warp, Location location){
 	}
 }
 ```
-
+---
 ## HomeManager
 ```java
 public void moveHome(Player player, String home, Location location){
