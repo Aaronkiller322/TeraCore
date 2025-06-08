@@ -66,7 +66,7 @@ Modular, leistungsfähig und modern.
 
 ---
 
-#### ✅ TeraCore Api's
+# ✅ TeraCore Api's
 
 ## TeraText
 ```java
