@@ -47,42 +47,42 @@ public void Test(Player player) {
 
 ## 💡 Command-Tabelle
 
-| Command%     | Permission                | Beschreibung                                 |
-|---------------|-----------------------------|-------------------------------------------------|
-| `gamemode`    | `teracore.gamemode`         | Ändert den Spielmodus (Alias: `gm`)            |
-| `fly`         | `teracore.fly`              | Aktiviert oder deaktiviert Flugmodus           |
-| `time`        | `teracore.time`             | Setzt die Weltzeit manuell                     |
-| `day`         | `teracore.time.day`         | Setzt die Zeit auf Tag                         |
-| `night`       | `teracore.time.night`       | Setzt die Zeit auf Nacht                       |
-| `weather`     | `teracore.weather`          | Ändert das Wetter                              |
-| `sun`         | `teracore.weather.sun`      | Setzt das Wetter auf Sonnig                    |
-| `rain`        | `teracore.weather.rain`     | Setzt das Wetter auf Regen                     |
-| `thunder`     | `teracore.weather.thunder`  | Setzt das Wetter auf Gewitter                  |
-| `tphere`      | `teracore.tphere`           | Teleportiert Spieler zu dir                    |
-| `teleport`    | `teracore.teleport`         | Teleportiert dich zu einem Spieler (Alias: `tp`)|
-| `speed`       | `teracore.speed`            | Ändert Flug- oder Laufgeschwindigkeit          |
-| `eat`         | `teracore.eat`              | Füllt den Hungerbalken (Alias: `food`)         |
-| `heal`        | `teracore.heal`             | Heilt den Spieler vollständig                  |
-| `money`       | `teracore.money`            | Zeigt den aktuellen Kontostand an              |
-| `addmoney`    | `teracore.money.add`        | Fügt einem Spieler Geld hinzu                  |
+| Command     | Permission                | Beschreibung                                 |
+|--------------|-----------------------------|-------------------------------------------------|
+| `gamemode`   | `teracore.gamemode`         | Ändert den Spielmodus (Alias: `gm`)            |
+| `fly`        | `teracore.fly`              | Aktiviert oder deaktiviert Flugmodus           |
+| `time`       | `teracore.time`             | Setzt die Weltzeit manuell                     |
+| `day`        | `teracore.time.day`         | Setzt die Zeit auf Tag                         |
+| `night`      | `teracore.time.night`       | Setzt die Zeit auf Nacht                       |
+| `weather`    | `teracore.weather`          | Ändert das Wetter                              |
+| `sun`        | `teracore.weather.sun`      | Setzt das Wetter auf Sonnig                    |
+| `rain`       | `teracore.weather.rain`     | Setzt das Wetter auf Regen                     |
+| `thunder`    | `teracore.weather.thunder`  | Setzt das Wetter auf Gewitter                  |
+| `tphere`     | `teracore.tphere`           | Teleportiert Spieler zu dir                    |
+| `teleport`   | `teracore.teleport`         | Teleportiert dich zu einem Spieler (Alias: `tp`)|
+| `speed`      | `teracore.speed`            | Ändert Flug- oder Laufgeschwindigkeit          |
+| `eat`        | `teracore.eat`              | Füllt den Hungerbalken (Alias: `food`)         |
+| `heal`       | `teracore.heal`             | Heilt den Spieler vollständig                  |
+| `money`      | `teracore.money`            | Zeigt den aktuellen Kontostand an              |
+| `addmoney`   | `teracore.money.add`        | Fügt einem Spieler Geld hinzu                  |
 | `removemoney` | `teracore.money.remove`     | Zieht einem Spieler Geld ab                    |
-| `setmoney`    | `teracore.money.set`        | Setzt den Kontostand eines Spielers            |
-| `pay`         | `teracore.money.pay`        | Sendet einem anderen Spieler Geld              |
-| `skull`       | `teracore.skull`            | Gibt einen Spielerkopf                         |
-| `motd`        | `teracore.motd`             | Zeigt die Nachricht des Tages an               |
-| `home`        | `teracore.home`             | Teleportiert dich zu deinem Zuhause            |
-| `sethome`     | `teracore.home.set`         | Setzt deinen Zuhause-Punkt                     |
-| `delhome`     | `teracore.home.delete`      | Löscht dein Zuhause                            |
-| `movehome`    | `teracore.home.move`        | Bewegt dein Zuhause zur aktuellen Position     |
-| `warp`        | `teracore.warp`             | Teleportiert zu einem Warp-Punkt               |
-| `setwarp`     | `teracore.warp.set`         | Erstellt einen neuen Warp                      |
-| `delwarp`     | `teracore.warp.delete`      | Löscht einen Warp                              |
-| `kick`        | `teracore.kick`             | Kickt einen Spieler                            |
-| `ban`         | `teracore.ban`              | Bannt einen Spieler dauerhaft                  |
-| `unban`       | `teracore.unban`            | Entbannt einen Spieler                         |
-| `banlist`     | `teracore.banlist`          | Zeigt alle gebannten Spieler                   |
-| `tempban`     | `teracore.tempban`          | Bannt einen Spieler temporär                   |
-| `seed`        | `teracore.seed`             | Zeigt den Seed der Welt                        |
+| `setmoney`   | `teracore.money.set`        | Setzt den Kontostand eines Spielers            |
+| `pay`        | `teracore.money.pay`        | Sendet einem anderen Spieler Geld              |
+| `skull`      | `teracore.skull`            | Gibt einen Spielerkopf                         |
+| `motd`       | `teracore.motd`             | Zeigt die Nachricht des Tages an               |
+| `home`       | `teracore.home`             | Teleportiert dich zu deinem Zuhause            |
+| `sethome`    | `teracore.home.set`         | Setzt deinen Zuhause-Punkt                     |
+| `delhome`    | `teracore.home.delete`      | Löscht dein Zuhause                            |
+| `movehome`   | `teracore.home.move`        | Bewegt dein Zuhause zur aktuellen Position     |
+| `warp`       | `teracore.warp`             | Teleportiert zu einem Warp-Punkt               |
+| `setwarp`    | `teracore.warp.set`         | Erstellt einen neuen Warp                      |
+| `delwarp`    | `teracore.warp.delete`      | Löscht einen Warp                              |
+| `kick`       | `teracore.kick`             | Kickt einen Spieler                            |
+| `ban`        | `teracore.ban`              | Bannt einen Spieler dauerhaft                  |
+| `unban`      | `teracore.unban`            | Entbannt einen Spieler                         |
+| `banlist`    | `teracore.banlist`          | Zeigt alle gebannten Spieler                   |
+| `tempban`    | `teracore.tempban`          | Bannt einen Spieler temporär                   |
+| `seed`       | `teracore.seed`             | Zeigt den Seed der Welt                        |
 
 ---
 
