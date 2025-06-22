@@ -1,7 +1,9 @@
 package me.aaron.TeraCore.main;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicePriority;
@@ -23,6 +25,8 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
 import me.aaron.TeraCore.economy.EconomyImplementer;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class TeraMain extends JavaPlugin implements Listener {
@@ -31,42 +35,46 @@ public class TeraMain extends JavaPlugin implements Listener {
 	public String name;
 	// String setmoney = "";
 
+	public static HashMap<Player, ArrayList<Location>> back_location = new HashMap<>();
 
 	@Override
 	public void onEnable() {
-	    try {
-	        singleton = this;
-	        // Initialisiere wichtige Ressourcen
-	        PrefixManager.loadPrefix();
-	        CommandBlockEvent.loadconfig();
-	        MotdManager.loadConfig();
+		try {
+			singleton = this;
+			// Initialisiere wichtige Ressourcen
+			PrefixManager.loadPrefix();
+			CommandBlockEvent.loadconfig();
+			MotdManager.loadConfig();
 
-	        // Datenbankverbindung herstellen (falls MySQL aktiviert ist)
-	        if (Eco_Manager.isMysql()) {
-	            MySQLDatabase.connect();
-	        }
+			// Datenbankverbindung herstellen (falls MySQL aktiviert ist)
+			if (Eco_Manager.isMysql()) {
+				MySQLDatabase.connect();
+			}
 
-	        // Economy registrieren
-	        Bukkit.getServicesManager().register(Economy.class, new EconomyImplementer(), this, ServicePriority.Normal);
+			if (new Eco_Config().enabled()) {
+				Bukkit.getServicesManager().register(Economy.class, new EconomyImplementer(), this, ServicePriority.Normal);
+				EconomyMain.enable();
+			}
+			DefaultConfig.LoadDefaultConfig();
+			CommandMain.loadCommands();
+			EventMain.loadEvents();
 
-	        // Weitere Initialisierungen
-	        EconomyMain.enable();
-	        DefaultConfig.LoadDefaultConfig();
-	        CommandMain.loadCommands();
-	        EventMain.loadEvents();
+			// PlaceholderAPI-Unterstützung registrieren
 
-	        // PlaceholderAPI-Unterstützung registrieren
-	        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-	            new TeraHolder().register();
-	        }
 
-	        getLogger().info("TeraCore has been successfully enabled!");
-	    } catch (Exception e) {
-	        getLogger().severe("Failed to enable TeraCore!");
-	        e.printStackTrace();
-	        getServer().getPluginManager().disablePlugin(this);
-	    }
+			Bukkit.getScheduler().runTaskLater(this, () -> {
+				if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+					new TeraHolder().register();
+					Bukkit.getConsoleSender().sendMessage("§aTeraCore Placeholder registriert.");
+				} else {
+					Bukkit.getConsoleSender().sendMessage("§cPlaceholderAPI nicht gefunden.");
+
+				}
+			}, 20L); // 1 Sekunde Verzögerung (20 Ticks)
+		}catch (Exception ex){}
+
 	}
+
 	public void onDisable() {
 		Eco_Config eco_conf = new Eco_Config();
 		if(eco_conf.config.getString("economy.storage-method").equalsIgnoreCase("MYSQL")) {

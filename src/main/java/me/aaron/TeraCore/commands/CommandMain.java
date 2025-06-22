@@ -1,5 +1,6 @@
 package me.aaron.TeraCore.commands;
 
+import me.aaron.TeraCore.economy.Eco_Config;
 import org.bukkit.command.CommandExecutor;
 
 import me.aaron.TeraCore.main.TeraMain;
@@ -42,19 +43,19 @@ public class CommandMain {
 		
 		TeraMain.getPlugin().getCommand("money").setExecutor((CommandExecutor) new money());
 		TeraMain.getPlugin().getCommand("money").setTabCompleter(new money());
-		
-		TeraMain.getPlugin().getCommand("setmoney").setExecutor((CommandExecutor) new money());
-		TeraMain.getPlugin().getCommand("setmoney").setTabCompleter(new money());
-		
-		TeraMain.getPlugin().getCommand("addmoney").setExecutor((CommandExecutor) new money());
-		TeraMain.getPlugin().getCommand("addmoney").setTabCompleter(new money());
-		
-		TeraMain.getPlugin().getCommand("removemoney").setExecutor((CommandExecutor) new money());
-		TeraMain.getPlugin().getCommand("removemoney").setTabCompleter(new money());
-		
-		TeraMain.getPlugin().getCommand("pay").setExecutor((CommandExecutor) new money());
-		TeraMain.getPlugin().getCommand("pay").setTabCompleter(new money());
-		
+		if(new Eco_Config().enabled()) {
+			TeraMain.getPlugin().getCommand("setmoney").setExecutor((CommandExecutor) new money());
+			TeraMain.getPlugin().getCommand("setmoney").setTabCompleter(new money());
+
+			TeraMain.getPlugin().getCommand("addmoney").setExecutor((CommandExecutor) new money());
+			TeraMain.getPlugin().getCommand("addmoney").setTabCompleter(new money());
+
+			TeraMain.getPlugin().getCommand("removemoney").setExecutor((CommandExecutor) new money());
+			TeraMain.getPlugin().getCommand("removemoney").setTabCompleter(new money());
+
+			TeraMain.getPlugin().getCommand("pay").setExecutor((CommandExecutor) new money());
+			TeraMain.getPlugin().getCommand("pay").setTabCompleter(new money());
+		}
 		TeraMain.getPlugin().getCommand("skull").setExecutor((CommandExecutor) new skull());
 		
 		
@@ -93,8 +94,15 @@ public class CommandMain {
 		
 		TeraMain.getPlugin().getCommand("tempban").setExecutor((CommandExecutor) new tempban());
 		TeraMain.getPlugin().getCommand("tempban").setTabCompleter(new tempban());
-		
+
 		TeraMain.getPlugin().getCommand("seed").setExecutor((CommandExecutor) new seed());
+
+		TeraMain.getPlugin().getCommand("back").setExecutor((CommandExecutor) new back());
+
+		TeraMain.getPlugin().getCommand("tpa").setExecutor((CommandExecutor) new teleportask());
+		TeraMain.getPlugin().getCommand("tpahere").setExecutor((CommandExecutor) new teleportask());
+		TeraMain.getPlugin().getCommand("tpaccept").setExecutor((CommandExecutor) new teleportask());
+		TeraMain.getPlugin().getCommand("tpadeny").setExecutor((CommandExecutor) new teleportask());
 		
 	}
 	

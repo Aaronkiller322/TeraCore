@@ -29,7 +29,7 @@ public class CommandBlockEvent implements Listener {
 	private static String permission;
 	private static boolean bypass;
 	public static void loadconfig() {
-		File file = new File("plugins/" + TeraMain.getPlugin().getName(), "cooldown-settings.yml");	
+		File file = new File("plugins/" + TeraMain.getPlugin().getName() + "/lang", "cooldown-settings.yml");
 		FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 		
 		if(config.get("cooldown") == null) {

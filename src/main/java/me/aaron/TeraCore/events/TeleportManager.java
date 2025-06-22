@@ -34,7 +34,7 @@ public class TeleportManager implements Listener {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName();
+	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang";
 
 	private HashMap<Player, Location> wait = new HashMap<Player, Location>();
 	private HashMap<Player, Integer> time = new HashMap<Player, Integer>();
@@ -153,7 +153,19 @@ public class TeleportManager implements Listener {
 		if(!event.getCause().equals(PlayerTeleportEvent.TeleportCause.COMMAND) &&(!event.getCause().equals(PlayerTeleportEvent.TeleportCause.PLUGIN))){
 			return;
 		}
+
+		ArrayList<Location> loc = new ArrayList<>();
+		if(TeraMain.back_location.containsKey(player)){
+			loc = TeraMain.back_location.get(player);
+		}
+		loc.add(event.getFrom());
+		TeraMain.back_location.put(player, loc);
+
 		if(blacklist_effect(player, event.getTo().getWorld().getName())) return;
+
+
+
+
 		if (isBypass(player)) {
 			
 			showParticleCircle(event.getTo(), player);

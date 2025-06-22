@@ -18,14 +18,17 @@ public class EconomyMain {
     private static Economy econ = null;
 
     public static void enable() {
-        PluginManager pm = Bukkit.getServer().getPluginManager();
-        if (setupEconomy()) {
-            Bukkit.getServicesManager().register(Economy.class, new EconomyImplementer(), TeraMain.getPlugin(), ServicePriority.Normal);
-            Bukkit.getConsoleSender().sendMessage("TeraCore Economy erfolgreich initialisiert.");
-        } else {
-            Bukkit.getConsoleSender().sendMessage("§cTeraCore Deaktiviert: Vault nicht gefunden oder nicht richtig konfiguriert.");
-            pm.disablePlugin(TeraMain.getPlugin());
+        if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
+            Bukkit.getConsoleSender().sendMessage("§cTeraCore deaktiviert: Vault nicht gefunden.");
+            Bukkit.getPluginManager().disablePlugin(TeraMain.getPlugin());
+            return;
         }
+
+        EconomyImplementer implementer = new EconomyImplementer();
+        Bukkit.getServicesManager().register(Economy.class, implementer, TeraMain.getPlugin(), ServicePriority.Normal);
+        econ = implementer;
+
+        Bukkit.getConsoleSender().sendMessage("§aTeraCore Economy erfolgreich als Vault-Provider registriert.");
     }
 
     private static boolean setupEconomy() {

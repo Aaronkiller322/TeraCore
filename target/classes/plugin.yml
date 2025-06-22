@@ -76,3 +76,13 @@ commands:
     usage: /<command>
   seed:
     usage: /<command>
+  back:
+    usage: /<command>
+  tpa:
+    usage: /<command>
+  tpahere:
+    usage: /<command>
+  tpaccept:
+    usage: /<command>
+  tpadeny:
+    usage: /<command>

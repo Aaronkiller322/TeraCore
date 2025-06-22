@@ -50,7 +50,7 @@ public class banlist implements CommandExecutor, TabCompleter {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		String name = "Console";
-		String permission = config.getString("command.permission");
+		String permission = config.getString("command.permission");/*
 		if (command.getName().equalsIgnoreCase("banlist")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
@@ -143,13 +143,13 @@ public class banlist implements CommandExecutor, TabCompleter {
 				BanManager.banPlayer(uuid, sender, finalReason);
 				return true;
 			}
-		}
+		}*/
 		return false;
 	}
 
 	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 		List<String> tab = new ArrayList<>();
-
+/*
 		if (command.getName().equalsIgnoreCase("ban")) {
 			try {
 				if (sender instanceof Player) {
@@ -179,11 +179,11 @@ public class banlist implements CommandExecutor, TabCompleter {
 				// TODO: handle exception
 
 			}
-		}
+		}*/
 		return tab;
 
 	}
-
+/*
 	public void sendBanInfo(Player player, String userName, String uuidString){
 
 		String info = PlaceHolder.replacePlaceholder(config.getString("command.message.info").replace("%player%", userName));
@@ -212,5 +212,5 @@ public class banlist implements CommandExecutor, TabCompleter {
 		}
 		text.sendMessage(player);
 	}
-
+*/
 }

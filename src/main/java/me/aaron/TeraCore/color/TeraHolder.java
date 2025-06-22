@@ -75,23 +75,25 @@ public class TeraHolder extends PlaceholderExpansion {
 	    	if(params.equalsIgnoreCase("name")) {
 	    		return TeraMain.getPlugin().name;
 	    	}
-	    	if(params.equalsIgnoreCase("money")) {
-	    		try {
-	    			
-	    			
-	    			return String.valueOf(new Eco_Manager(player.getUniqueId()).getMoney());
 
-	    		}catch (Exception e) {
-					return "Player not found";
+	    	if(params.equalsIgnoreCase("money")) {
+				if(new Eco_Config().enabled()) {
+					try {
+						return String.valueOf(new Eco_Manager(player.getUniqueId()).getMoney());
+					} catch (Exception e) {
+						return "Player not found";
+					}
 				}
 	    	}
 	    	if(params.equalsIgnoreCase("money_round")) {
-	    		try {
-	    			Eco_Manager manager = new Eco_Manager(player.getUniqueId());
-	    			return manager.roundMoney(manager.getMoney());
+				if(new Eco_Config().enabled()) {
+					try {
+						Eco_Manager manager = new Eco_Manager(player.getUniqueId());
+						return manager.roundMoney(manager.getMoney());
 
-	    		}catch (Exception e) {
-	    			return "Player not found";
+					} catch (Exception e) {
+						return "Player not found";
+					}
 				}
 	    	}
 	        return null;

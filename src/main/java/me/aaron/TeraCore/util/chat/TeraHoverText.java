@@ -8,6 +8,7 @@ public class TeraHoverText {
     private String text = "§cEmpty";
     private String hovertext = null;
     private String copytext = null;
+    private String commandToRun = null;
     private String color = null;
 
     public TeraHoverText(String text) {
@@ -33,6 +34,14 @@ public class TeraHoverText {
 
     public String getCopytext() {
         return copytext;
+    }
+
+    public void setCommandToRun(String commandToRun) {
+        this.commandToRun = commandToRun;
+    }
+
+    public String getCommandToRun() {
+        return commandToRun;
     }
 
     public String getColor() {

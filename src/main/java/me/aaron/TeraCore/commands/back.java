@@ -1,15 +1,11 @@
 package me.aaron.TeraCore.commands;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
+import me.aaron.TeraCore.color.PlaceHolder;
+import me.aaron.TeraCore.main.ConfigLoader;
+import me.aaron.TeraCore.main.DefaultConfig;
+import me.aaron.TeraCore.main.TeraMain;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Sound;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,19 +14,19 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import me.aaron.TeraCore.color.PlaceHolder;
-import me.aaron.TeraCore.main.ConfigLoader;
-import me.aaron.TeraCore.main.DefaultConfig;
-import me.aaron.TeraCore.main.TeraMain;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class eat implements CommandExecutor, TabCompleter {
+public class back implements CommandExecutor, TabCompleter {
 
 	File file;
 	FileConfiguration config;
 
 	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang/commands";
 
-	public eat() {
+	public back() {
 		String filetype = getClass().getSimpleName();
 		File temp = new File(datafolder, filetype + ".yml");
 		if (temp.exists()) {
@@ -52,34 +48,63 @@ public class eat implements CommandExecutor, TabCompleter {
 
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			if (command.getName().equalsIgnoreCase("eat")) {
+			if (command.getName().equalsIgnoreCase("back")) {
 				
 				if (player.hasPermission(config.getString("command.args0.permission"))
 						|| player.hasPermission(DefaultConfig.getConfig().getString("admin_permission"))) {
 					if (args.length == 0) {
-						player.setFoodLevel(20);
+
+						ArrayList<Location> loc = new ArrayList<>();
+						if(TeraMain.back_location.containsKey(player)){
+							loc = TeraMain.back_location.get(player);
+						}
+
+						if(loc.size() < 1){
+							player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args0.failed")));
+							return true;
+						}
+						Location location = loc.get(0);
+
+						player.teleport(location);
+						loc.remove(location);
+
+						TeraMain.back_location.put(player, loc);
+
 						player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args0.usage")));
 						return true;
 					}
 					if (args.length == 1) {
-						if (player.hasPermission(config.getString("command.args1.permission"))
-								|| player.hasPermission(DefaultConfig.getConfig().getString("admin_permission"))) {
-							Player trust = Bukkit.getPlayer(args[0]);
-							if (trust == null) {
-								player.sendMessage(PlaceHolder.replacePlaceholder(
-										DefaultConfig.getConfig().getString("message.player_not_found")));
-								return true;
-							}
 
-							trust.setFoodLevel(20);
-							trust.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args0.usage")));
-							player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.usage")
-									.replace("%player%", trust.getDisplayName())));
+						int num = 0;
+
+						try{
+						num = Integer.valueOf(args[0]) +-1;
+						}catch (Exception ex){
+							num = 1;
+						}
+						ArrayList<Location> loc = new ArrayList<>();
+						if(TeraMain.back_location.containsKey(player)){
+							loc = TeraMain.back_location.get(player);
+						}
+
+						if(loc.size() < 1){
+							player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args0.failed")));
 							return true;
 						}
 
-						player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.help")));
+						Location location;
+						try {
+							location = loc.get(num);
+						}catch (Exception exception){
+							location = loc.get(0);
+						}
 
+						player.teleport(location);
+						loc.remove(location);
+
+						TeraMain.back_location.put(player, loc);
+
+						player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args0.usage")));
 						return true;
 					}
 				} else {

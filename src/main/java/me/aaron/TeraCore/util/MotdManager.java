@@ -11,7 +11,7 @@ import me.aaron.TeraCore.main.TeraMain;
 
 public class MotdManager {
 
-	private static File file_motd = new File("plugins/" + TeraMain.getPlugin().getName(), "motd.yml");	
+	private static File file_motd = new File("plugins/" + TeraMain.getPlugin().getName() + "/lang", "motd.yml");
 	private static FileConfiguration config_motd = YamlConfiguration.loadConfiguration(file_motd);
 	
 	private static String line1 = "&e► 🏗 %teracore_<gradient:32FFFF:1E9999>TeraCore</gradient>% &8▪ &e🌆 %teracore_<gradient:D1FFED:93FF72>Plugin Version 2.5.3</gradient>%";

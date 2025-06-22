@@ -17,7 +17,11 @@ public class Eco_Manager {
 		}
 		return false;
 	}
-	
+
+	public boolean enabled(){
+		return eco_conf.config.getBoolean("economy.enabled");
+	}
+
 	public void setMoney(double money){
 		if(isMysql()) {
 			V2_TeraVault_MYSQL vault = new V2_TeraVault_MYSQL(uuid);

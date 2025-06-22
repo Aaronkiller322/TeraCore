@@ -33,7 +33,10 @@ public class Eco_Config {
 		}
 
 	}
-	
+    public boolean enabled(){
+        return config.getBoolean("economy.enabled");
+    }
+
     private static FileConfiguration config_temp;
     private static String filetype;
 

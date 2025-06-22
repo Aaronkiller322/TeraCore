@@ -5,8 +5,6 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TeraText {
 
@@ -45,7 +43,9 @@ public class TeraText {
                 additions.add("\"hoverEvent\":{\"action\":\"show_text\",\"contents\":" + hoverJson + "}");
             }
 
-            if (part.getCopytext() != null) {
+            if (part.getCommandToRun() != null) {
+                additions.add("\"clickEvent\":{\"action\":\"run_command\",\"value\":\"" + escape(part.getCommandToRun()) + "\"}");
+            } else if (part.getCopytext() != null) {
                 additions.add("\"clickEvent\":{\"action\":\"copy_to_clipboard\",\"value\":\"" + escape(part.getCopytext()) + "\"}");
             }
 

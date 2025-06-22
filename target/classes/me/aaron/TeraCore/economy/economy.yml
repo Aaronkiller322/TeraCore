@@ -1,4 +1,5 @@
 economy:
+  enabled: true
   storage-method: 'LOCAL' # MYSQL / LOCAL
   data:
     address: 'localhost'
