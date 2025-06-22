@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import me.aaron.TeraCore.main.LanguageLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -34,7 +35,8 @@ public class TeleportManager implements Listener {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang";
+	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang_" + TeraMain.getLanguage();
+
 
 	private HashMap<Player, Location> wait = new HashMap<Player, Location>();
 	private HashMap<Player, Integer> time = new HashMap<Player, Integer>();
@@ -44,6 +46,7 @@ public class TeleportManager implements Listener {
 
 	public TeleportManager() {
 		String filetype = getClass().getSimpleName();
+		LanguageLoader.load(LanguageLoader.LanguageFolder.gobal, filetype);
 		File temp = new File(datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;

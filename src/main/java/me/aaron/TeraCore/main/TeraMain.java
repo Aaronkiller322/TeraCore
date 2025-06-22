@@ -1,5 +1,7 @@
 package me.aaron.TeraCore.main;
 
+import me.aaron.TeraCore.events.StateFix;
+import me.aaron.TeraCore.events.StateManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandExecutor;
@@ -25,6 +27,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import net.milkbowl.vault.economy.Economy;
 import me.aaron.TeraCore.economy.EconomyImplementer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -39,11 +42,11 @@ public class TeraMain extends JavaPlugin implements Listener {
 
 	@Override
 	public void onEnable() {
+		saveDefaultConfig();
 		try {
 			singleton = this;
 			// Initialisiere wichtige Ressourcen
 			PrefixManager.loadPrefix();
-			CommandBlockEvent.loadconfig();
 			MotdManager.loadConfig();
 
 			// Datenbankverbindung herstellen (falls MySQL aktiviert ist)
@@ -75,11 +78,18 @@ public class TeraMain extends JavaPlugin implements Listener {
 
 	}
 
+	public static String getLanguage(){
+		return TeraMain.getPlugin().getConfig().getString("language");
+	}
+
 	public void onDisable() {
 		Eco_Config eco_conf = new Eco_Config();
 		if(eco_conf.config.getString("economy.storage-method").equalsIgnoreCase("MYSQL")) {
 		MySQLDatabase.disconnect();
 		}
+
+		StateFix.onDisable();
+
 	}
 	private static TeraMain singleton;
 

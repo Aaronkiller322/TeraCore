@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import me.aaron.TeraCore.main.LanguageLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
@@ -32,11 +33,10 @@ public class tempban implements CommandExecutor, TabCompleter {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang/commands";
-
 	public tempban() {
 		String filetype = getClass().getSimpleName();
-		File temp = new File(datafolder, filetype + ".yml");
+		LanguageLoader.load(LanguageLoader.LanguageFolder.commands, filetype);
+		File temp = new File(CommandMain.datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;
 			config = (FileConfiguration) YamlConfiguration.loadConfiguration(file);
@@ -48,7 +48,6 @@ public class tempban implements CommandExecutor, TabCompleter {
 			} catch (IOException e) {
 			}
 		}
-
 	}
 
 	@Override

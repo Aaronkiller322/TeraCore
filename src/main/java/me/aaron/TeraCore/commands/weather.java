@@ -6,6 +6,7 @@ import java.io.ObjectInputFilter.Config;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.aaron.TeraCore.main.LanguageLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World;
@@ -27,11 +28,10 @@ public class weather implements CommandExecutor, TabCompleter {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang/commands";
-
 	public weather() {
 		String filetype = getClass().getSimpleName();
-		File temp = new File(datafolder, filetype + ".yml");
+		LanguageLoader.load(LanguageLoader.LanguageFolder.commands, filetype);
+		File temp = new File(CommandMain.datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;
 			config = (FileConfiguration) YamlConfiguration.loadConfiguration(file);
@@ -43,7 +43,6 @@ public class weather implements CommandExecutor, TabCompleter {
 			} catch (IOException e) {
 			}
 		}
-
 	}
 
 	@Override

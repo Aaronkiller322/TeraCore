@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.aaron.TeraCore.main.LanguageLoader;
 import me.aaron.TeraCore.util.chat.TeraHoverText;
 import me.aaron.TeraCore.util.chat.TeraText;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -32,11 +33,10 @@ public class seed implements CommandExecutor {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang/commands";
-
 	public seed() {
 		String filetype = getClass().getSimpleName();
-		File temp = new File(datafolder, filetype + ".yml");
+		LanguageLoader.load(LanguageLoader.LanguageFolder.commands, filetype);
+		File temp = new File(CommandMain.datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;
 			config = (FileConfiguration) YamlConfiguration.loadConfiguration(file);
@@ -48,7 +48,6 @@ public class seed implements CommandExecutor {
 			} catch (IOException e) {
 			}
 		}
-
 	}
 
 	

@@ -1,10 +1,13 @@
 package me.aaron.TeraCore.events;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.UUID;
 
+import me.aaron.TeraCore.main.ConfigLoader;
+import me.aaron.TeraCore.main.LanguageLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -28,23 +31,30 @@ public class CommandBlockEvent implements Listener {
 	private static Integer secound;
 	private static String permission;
 	private static boolean bypass;
-	public static void loadconfig() {
-		File file = new File("plugins/" + TeraMain.getPlugin().getName() + "/lang", "cooldown-settings.yml");
-		FileConfiguration config = YamlConfiguration.loadConfiguration(file);
-		
-		if(config.get("cooldown") == null) {
-			config.set("cooldown.enabled", true);
-			config.set("cooldown.second", 3);
-			config.set("cooldown.message", "%teracore_prefix% &4🚫 &cDu bist zu schnell! Bitte warte &e%time% Sekunden!");
-			config.set("cooldown.bypass.enabled", true);
-			config.set("cooldown.bypass.permission", "teracore.cooldown.bypass");
+
+
+	File file;
+	FileConfiguration config;
+
+	public CommandBlockEvent() {
+		String filetype = "cooldown-settings";
+		LanguageLoader.load(LanguageLoader.LanguageFolder.events, filetype);
+		File temp = new File(EventMain.datafolder, filetype + ".yml");
+		if (temp.exists()) {
+			file = temp;
+			config = (FileConfiguration) YamlConfiguration.loadConfiguration(file);
+		} else {
+			config = ConfigLoader.getConfig(filetype);
+			file = temp;
 			try {
-			config.save(file);
-			}catch (Exception e) {
+				config.save(temp);
+			} catch (IOException e) {
 			}
 		}
-		
-		
+		loadconfig();
+	}
+
+	public void loadconfig() {
 		message = config.getString("cooldown.message");
 		enabled = config.getBoolean("cooldown.enabled");
 		secound = config.getInt("cooldown.second");

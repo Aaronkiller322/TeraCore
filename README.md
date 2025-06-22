@@ -87,6 +87,7 @@ public void sendHoverText(Player player) {
     TeraHoverText teraHoverText = new TeraHoverText(klick);
     teraHoverText.setHoverText(hover);
     teraHoverText.setCopyText(copy);
+    teraHoverText.setCommandToRun("/say Hi");
 
     teraText.addHoverText(teraHoverText);
     teraText.addText("&e!");

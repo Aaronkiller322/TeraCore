@@ -78,20 +78,28 @@
 
             <!-- YMLs aus /configs -->
             <resource>
-                <directory>src/main/java/me/aaron/Teracore/configs</directory>
+                <directory>src/main/java/me/aaron/TeraCore/configs_de</directory>
                 <includes>
                     <include>**/*.yml</include>
                 </includes>
-                <targetPath>me/aaron/Teracore/configs</targetPath> <!-- Optional: wo es in der JAR landen soll -->
+                <targetPath>me/aaron/TeraCore/configs_de</targetPath> <!-- Optional: wo es in der JAR landen soll -->
+            </resource>
+
+            <resource>
+                <directory>src/main/java/me/aaron/TeraCore/configs_en</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                </includes>
+                <targetPath>me/aaron/TeraCore/configs_en</targetPath> <!-- Optional: wo es in der JAR landen soll -->
             </resource>
 
             <!-- YML aus /economy -->
             <resource>
-                <directory>src/main/java/me/aaron/Teracore/economy</directory>
+                <directory>src/main/java/me/aaron/TeraCore/economy</directory>
                 <includes>
                     <include>economy.yml</include>
                 </includes>
-                <targetPath>me/aaron/Teracore/economy</targetPath>
+                <targetPath>me/aaron/TeraCore/economy</targetPath>
             </resource>
         </resources>
 

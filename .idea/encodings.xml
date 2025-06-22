@@ -3,7 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/me/aaron/TeraCore/configs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/me/aaron/TeraCore/configs_de" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/me/aaron/TeraCore/configs_en" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/me/aaron/TeraCore/economy" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

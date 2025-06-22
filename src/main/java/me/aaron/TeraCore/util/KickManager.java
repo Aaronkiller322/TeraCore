@@ -19,7 +19,7 @@ public class KickManager {
 
 	
 	public static void KickPlayer(Player player, CommandSender sender, String reason) {
-		File file = new File("plugins/" + TeraMain.getPlugin().getName(), "/lang/commands/kick.yml");	
+		File file = new File("plugins/" + TeraMain.getPlugin().getName(), "/lang_" + TeraMain.getLanguage()+ "/commands/kick.yml");
 		FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
 		

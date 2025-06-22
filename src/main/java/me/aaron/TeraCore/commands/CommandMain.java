@@ -7,6 +7,8 @@ import me.aaron.TeraCore.main.TeraMain;
 
 public class CommandMain {
 
+	public static String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang_" + TeraMain.getLanguage() +"/commands";
+
 	public static void loadCommands() {
 		TeraMain.getPlugin().getCommand("gamemode").setExecutor((CommandExecutor) new gamemode());
 		TeraMain.getPlugin().getCommand("gamemode").setTabCompleter(new gamemode());

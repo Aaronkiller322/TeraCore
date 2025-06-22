@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
 
+import me.aaron.TeraCore.main.LanguageLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -44,11 +45,10 @@ public class skull implements CommandExecutor {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang/commands";
-
 	public skull() {
 		String filetype = getClass().getSimpleName();
-		File temp = new File(datafolder, filetype + ".yml");
+		LanguageLoader.load(LanguageLoader.LanguageFolder.commands, filetype);
+		File temp = new File(CommandMain.datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;
 			config = (FileConfiguration) YamlConfiguration.loadConfiguration(file);
@@ -60,7 +60,6 @@ public class skull implements CommandExecutor {
 			} catch (IOException e) {
 			}
 		}
-
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package me.aaron.TeraCore.commands;
 import me.aaron.TeraCore.color.PlaceHolder;
 import me.aaron.TeraCore.main.ConfigLoader;
 import me.aaron.TeraCore.main.DefaultConfig;
+import me.aaron.TeraCore.main.LanguageLoader;
 import me.aaron.TeraCore.main.TeraMain;
 import me.aaron.TeraCore.util.BanManager;
 import me.aaron.TeraCore.util.UUIDFetcher;
@@ -28,11 +29,11 @@ public class banlist implements CommandExecutor, TabCompleter {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang/commands";
 
 	public banlist() {
 		String filetype = getClass().getSimpleName();
-		File temp = new File(datafolder, filetype + ".yml");
+		LanguageLoader.load(LanguageLoader.LanguageFolder.commands, filetype);
+		File temp = new File(CommandMain.datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;
 			config = (FileConfiguration) YamlConfiguration.loadConfiguration(file);
@@ -44,7 +45,6 @@ public class banlist implements CommandExecutor, TabCompleter {
 			} catch (IOException e) {
 			}
 		}
-
 	}
 
 	@Override

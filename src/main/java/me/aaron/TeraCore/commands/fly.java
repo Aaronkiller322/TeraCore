@@ -3,6 +3,7 @@ package me.aaron.TeraCore.commands;
 import java.io.File;
 import java.io.IOException;
 
+import me.aaron.TeraCore.main.LanguageLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -22,11 +23,11 @@ public class fly implements CommandExecutor {
 	File file;
 	FileConfiguration config;
 
-	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang/commands";
 
 	public fly() {
 		String filetype = getClass().getSimpleName();
-		File temp = new File(datafolder, filetype + ".yml");
+		LanguageLoader.load(LanguageLoader.LanguageFolder.commands, filetype);
+		File temp = new File(CommandMain.datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;
 			config = (FileConfiguration) YamlConfiguration.loadConfiguration(file);
@@ -38,7 +39,6 @@ public class fly implements CommandExecutor {
 			} catch (IOException e) {
 			}
 		}
-
 	}
 
 	@Override

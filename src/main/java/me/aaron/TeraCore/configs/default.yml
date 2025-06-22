@@ -1,9 +1,0 @@
-# Berechtigung für Administratoren
-admin_permission: 'teracore.admin'
-
-message:
-  # Nachricht, die angezeigt wird, wenn der Spieler keine Berechtigung hat
-  no_permission: '%teracore_prefix% &4✘ &cDu hast keine Rechte!'
-
-  # Nachricht, die angezeigt wird, wenn der angegebene Spieler nicht gefunden wurde
-  player_not_found: '%teracore_prefix% &4✘ &cDer Spieler wurde nicht gefunden!'
