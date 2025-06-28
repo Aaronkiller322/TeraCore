@@ -1,0 +1,13 @@
+command:
+  # Message displayed when the player requests help for the /back command
+  help: '%teracore_prefix% &e❓ &7Use &f/back &7to teleport to your last position.'
+  
+  args0:
+    # Message displayed when the player is successfully teleported
+    usage: '%teracore_prefix% &a✔ &7You have been successfully teleported to your last position!'
+    
+    # Message shown when no back position is found
+    failed: '%teracore_prefix% &c✖ &7No saved position was found!'
+    
+    # Permission required to use the /back command
+    permission: teracore.back

@@ -1,0 +1,20 @@
+placeholder:
+  # Placeholder for day and night
+  day: Day # Placeholder for day
+  night: Night # Placeholder for night
+
+time:
+  # Defines the time values for day and night
+  day: 0 # Day starts at 0 (Minecraft default)
+  night: 13000 # Night starts at 13000 (Minecraft default)
+
+command:
+  # Help message for the /time set command
+  help: '%teracore_prefix% &e❓ &7/time set <Day/Night/Number>'
+  
+  args2:
+    # Notification displayed when the time is successfully changed
+    usage: '%teracore_prefix% &e⏰ &7Time has been set to &e%time%&7!'
+    
+    # Permission required to execute the command for the specified time
+    permission: teracore.time.%time%

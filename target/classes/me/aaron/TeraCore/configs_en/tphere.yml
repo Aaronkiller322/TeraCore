@@ -1,0 +1,13 @@
+command:
+  # Help message for the /tphere command
+  help: '%teracore_prefix% &e❓ &7/tphere <player>'
+  
+  args1:
+    # Message when the player teleports another player to themselves
+    usage: '%teracore_prefix% &e🌍 &7You teleported &e%player% &7to yourself!'
+    
+    # Message when the player is teleported to another player
+    trust: '%teracore_prefix% &e🌍 &7You have been teleported to &e%player%&7!'
+    
+    # Permission required to execute the /tphere command
+    permission: teracore.teleport.here

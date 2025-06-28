@@ -1,0 +1,69 @@
+teleport:
+  # Who can see/hear teleport effects and sounds
+  see-and-hear:
+    online_player: true # Online players see/hear the teleport effect
+    sender: true # The teleporting player sees/hears the effect
+  
+  # Control when effects and sounds should be disabled
+  black-list:
+    enabled: true
+    gamemode:
+      enabled: true
+      list:
+      - SPECTATOR
+      - ADVENTURE
+    world:
+      enabled: false
+      list:
+      - world1
+      - world2
+    permission:
+      enabled: false
+      permission: teracore.teleport.noeffect # No effect for players with this permission
+  
+  # Teleport sound effect settings
+  sound:
+    enabled: true
+    type: ENTITY_ENDERMAN_TELEPORT
+    pitch: 1
+    volume: 0.3
+  
+  # Teleport particle effect settings
+  particle:
+    enabled: true
+    color: AQUA
+    size: 1.5
+    radius: 1
+    height: 2.5
+    spread: 0.5
+  
+  # Teleport delay settings
+  delay:
+    enabled: true
+    seconds: 5
+    bypass:
+      enabled: true
+      permission: teracore.teleport.delay.bypass
+    join-cooldown-second: 5 # Time after joining before teleport delay applies (e.g. for spawn plugins)
+    
+    chat:
+      enabled: true
+      message: '%teracore_prefix% &b✦ &7You will be teleported in &e%seconds% seconds&7!'
+      successful: '%teracore_prefix% &a✔ &7You have been successfully teleported!'
+      failed: '%teracore_prefix% &c✖ &7Teleportation was cancelled!'
+    
+    # Countdown particle effect settings
+    particle:
+      enabled: true
+      color: YELLOW
+      size: 1.5
+      radius: 1
+      height: 2.5
+      spread: 0.5
+    
+    # Countdown sound effect settings
+    sound:
+      enabled: true
+      type: ENTITY_EXPERIENCE_ORB_PICKUP
+      pitch: 1
+      volume: 0.3

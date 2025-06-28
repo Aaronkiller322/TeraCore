@@ -1,0 +1,31 @@
+placeholder:
+  # Placeholder definitions for gamemode types
+  creative: Creative # Creative mode
+  survival: Survival # Survival mode
+  spectator: Spectator # Spectator mode
+  adventure: Adventure # Adventure mode
+
+command:
+  # Help message explaining how to use the command
+  help: '%teracore_prefix% &e❓ &7/Gamemode <0/1/2/3> <player>'
+  
+  # Argument 0 (shows help for the gamemode command)
+  args0:
+    # Permission required to access the help
+    permission: teracore.gamemode.help
+  
+  # Argument 1 (applying the /gamemode command to yourself)
+  args1:
+    # Message displayed when the player changes their own gamemode
+    usage: '%teracore_prefix% &e🎮 &7Your gamemode has been changed to &e%gamemode%&7!'
+    
+    # Permission required to change your own gamemode
+    permission: teracore.gamemode.%gamemode%
+  
+  # Argument 2 (applying the /gamemode command to another player)
+  args2:
+    # Message displayed when the player changes another player's gamemode
+    usage: '%teracore_prefix% &e🎮 &7The gamemode of &e%trust% &7has been changed to &e%gamemode%&7!'
+    
+    # Permission required to change another player's gamemode
+    permission: teracore.gamemode.%gamemode%.other

@@ -1,0 +1,30 @@
+ban:
+  # Message displayed when the player gets banned
+  message:
+  - '%teracore_name%'
+  - ' '
+  - '&c✖ &7You have been banned! &c✖'
+  - '&a⚑ &7By: &e%sender%'
+  - '&6❖ &7Reason: &e%reason%'
+  - '&d⏳ &7Duration: &e%time%'
+  - ' '
+  - '%teracore_name%'
+  
+  # Message when no reason for the ban is given
+  no_reason: No reason provided!
+  
+  # Message displayed when the ban is permanent
+  permaban: Permanent!
+
+command:
+  # Help message for the /ban command
+  help: '%teracore_prefix% &e❓ &7/ban <player> <reason>'
+  
+  # Message when the ban is executed successfully
+  usage: '%teracore_prefix% &c🚫 &7Player &e%player% &7was banned by &e%sender%&7!'
+  
+  # Message when the ban could not be executed (e.g. player is already banned)
+  failed: '%teracore_prefix% &4🚫 &cPlayer &e%player% &cis already banned!'
+  
+  # Permission required to use the /ban command
+  permission: teracore.ban

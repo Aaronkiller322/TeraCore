@@ -1,0 +1,10 @@
+command:
+  # Message shown when the player requests help for the /anvil command
+  help: '%teracore_prefix% &e❓ &7/anvil'
+
+  args0:
+    # Message shown when the anvil is successfully opened
+    usage: '%teracore_prefix% &7The anvil has been opened successfully! &e⚒'
+
+    # Permission required to use the /anvil command
+    permission: 'teracore.anvil'

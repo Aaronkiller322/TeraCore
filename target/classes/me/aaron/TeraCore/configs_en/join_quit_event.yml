@@ -1,0 +1,13 @@
+join:
+  # Enables or disables the message when a player joins the server
+  enable: true
+  
+  # Message displayed when a player joins the server
+  message: '%teracore_prefix% &e✨ &7Player &e%player% &7has joined the server!'
+
+quit:
+  # Enables or disables the message when a player leaves the server
+  enable: true
+  
+  # Message displayed when a player leaves the server
+  message: '%teracore_prefix% &e✨ &7Player &e%player% &7has left the server!'

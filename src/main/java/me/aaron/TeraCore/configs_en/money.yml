@@ -1,0 +1,59 @@
+command:
+  money:
+    # Help message for the /money command
+    help: '%teracore_prefix% &e❓ /money <player> &e💰 &7Shows your money or another player’s balance'
+    
+    # Message when the player checks their own balance
+    usage: '%teracore_prefix% &e💰 &7You have &e%money%&7 Money'
+    
+    # Message when the player checks someone else's balance
+    other: '%teracore_prefix% &e💰 &7Player &e%trust%&7 has &e%money%&7 Money'
+  
+  setmoney:
+    # Help message for the /setmoney command
+    help: '%teracore_prefix% &e❓ /setmoney <player> <money> &a💵 &7Sets a player’s balance'
+    
+    # Permission for the /setmoney command
+    permission: teracore.vault.setmoney
+    
+    # Message when a player's money is successfully set
+    usage: '%teracore_prefix% &a💵 &7You set &e%trust%&7’s balance to &e%money%&7 Teris!'
+    
+    # Message when your own balance is set
+    trust: '%teracore_prefix% &a💵 &7Your balance has been set to &e%money%&7 Teris by &e%trust%&7!'
+
+  addmoney:
+    # Help message for the /addmoney command
+    help: '%teracore_prefix% &e❓ /addmoney <player> <money> &2➕ &7Adds money to a player'
+    
+    # Permission for the /addmoney command
+    permission: teracore.vault.addmoney
+    
+    # Message when money is added to another player
+    usage: '%teracore_prefix% &2➕ &7You added &e%money%&7 Teris to &e%trust%&7!'
+    
+    # Message when money is added to your own account
+    trust: '%teracore_prefix% &2➕ &7You received &e%money%&7 Teris from &e%trust%&7'
+
+  removemoney:
+    # Help message for the /removemoney command
+    help: '%teracore_prefix% &e❓ /removemoney <player> <money> &4➖ &7Removes money from a player'
+    
+    # Permission for the /removemoney command
+    permission: teracore.vault.removemoney
+    
+    # Message when money is removed from another player's account
+    usage: '%teracore_prefix% &4➖ &7You removed &e%money%&7 Teris from &e%trust%&7!'
+    
+    # Message when money is removed from your own account
+    trust: '%teracore_prefix% &4➖ &7You had &e%money%&7 Teris removed by &e%trust%&7'
+
+  pay:
+    # Help message for the /pay command
+    help: '%teracore_prefix% &e❓ /pay <player> <money> &2💸 &7Pays a player money'
+    
+    # Message when the player successfully pays another player
+    usage: '%teracore_prefix% &2💸 &7You paid &e%money%&7 Teris to &e%trust%&7!'
+    
+    # Message when the player receives money from another player
+    trust: '%teracore_prefix% &2💸 &7You received &e%money%&7 Teris from &e%trust%&7!'

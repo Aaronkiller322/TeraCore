@@ -1,0 +1,12 @@
+command:
+  # Help message for the /unban command
+  help: '%teracore_prefix% &e❓ &7/unban <player>'
+  
+  # Message displayed when the command is successfully executed
+  usage: '%teracore_prefix% &a✅ &7Player &e%player% &7has been unbanned by &e%sender%&7!'
+  
+  # Message displayed when the player is not banned
+  failed: '%teracore_prefix% &4🚫 &cPlayer &e%player% &cis not banned!'
+  
+  # Permission required to execute the /unban command
+  permission: teracore.unban

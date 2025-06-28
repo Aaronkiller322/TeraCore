@@ -1,0 +1,42 @@
+command:
+  list:
+    # Message when available warps are listed
+    message: '%teracore_prefix% &e⭐ &7Available warps: &e'
+    
+    # Message when the specified warp is not found
+    failed: '%teracore_prefix% &4✘ &cWarp &e%warp% &ccould not be found!'
+    
+    # Message when the player is successfully teleported to a warp
+    teleport: '%teracore_prefix% &a✔ &7You have been teleported to &e%warp%&7!'
+    
+    # Separator used between warp names in the list
+    split: '&7, &e'
+    
+    # Message when no warps are set
+    empty: '%teracore_prefix% &c✘ No warps set!'
+
+  setwarp:
+    # Help message for the /setwarp command
+    help: '%teracore_prefix% &e❓ &7Usage: &e/setwarp <name>'
+    
+    # Message when a warp is successfully set
+    message: '%teracore_prefix% &a✔ &7Warp &e%warp% &7has been successfully set!'
+    
+    # Message when the warp already exists
+    failed: '%teracore_prefix% &4✘ &cWarp &e%warp% &calready exists!'
+    
+    # Permission required to set a warp
+    permission: teracore.setwarp
+
+  delwarp:
+    # Help message for the /delwarp command
+    help: '%teracore_prefix% &e❓ &7Usage: &e/delwarp <name>'
+    
+    # Message when a warp is successfully deleted
+    message: '%teracore_prefix% &a✔ &7Warp &e%warp% &7has been successfully deleted!'
+    
+    # Message when the warp is not found
+    failed: '%teracore_prefix% &4✘ &cWarp &e%warp% &ccould not be found!'
+    
+    # Permission required to delete a warp
+    permission: teracore.delwarp

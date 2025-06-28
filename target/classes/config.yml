@@ -1,0 +1,9 @@
+# Set the plugin language (e.g., lang-en, lang-de).
+# You can also create and use your own language folders.
+
+# Plugin-Sprache einstellen (z.B. lang-en, lang-de).
+# Eigene Sprachordner können ebenfalls erstellt und verwendet werden.
+
+language: 'en'
+
+

@@ -1,0 +1,19 @@
+command:
+  # Help message that explains to players how to use the command
+  help: '%teracore_prefix% &e❓ &7/speed <1-5>'
+  
+  # Argument 1 (Sets the player's own speed to a value between 1 and 5)
+  args1:
+    # Message indicating that the player's own speed was successfully set
+    usage: '%teracore_prefix% &e⚡ &7Your speed has been set to &e%speed%&7!'
+    
+    # Permission required to set your own speed
+    permission: teracore.speed.%speed%
+  
+  # Argument 2 (Sets another player's speed to a value between 1 and 5)
+  args2:
+    # Message indicating that another player's speed was set
+    usage: '%teracore_prefix% &e⚡ &7The speed of &e%trust% &7has been set to &e%speed%&7!'
+    
+    # Permission required to set another player's speed
+    permission: teracore.speed.%speed%.other

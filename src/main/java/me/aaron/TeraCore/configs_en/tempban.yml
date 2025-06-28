@@ -1,0 +1,26 @@
+tempban:
+  # Time units used for the temporary ban (days, hours, minutes, seconds)
+  time:
+    days: days # Placeholder for days
+    hours: hours # Placeholder for hours
+    minutes: minutes # Placeholder for minutes
+    seconds: seconds # Placeholder for seconds
+
+command:
+  # Help message explaining how to use the /tempban command
+  help: '%teracore_prefix% &e❓ &7/tempban <player> <time> <reason>'
+  
+  # Detailed help on how to use the time abbreviations
+  help2: '%teracore_prefix% &e❓ &bd &7= &edays&7, &bh &7= &ehours&7, &bm &7= &eminutes&7, &bs &7= &eseconds'
+  
+  # Example usage of the command
+  help3: '%teracore_prefix% &e❓ &6Example: /tempban Steve 10d rude'
+  
+  # Message displayed when a player is successfully temporarily banned
+  usage: '%teracore_prefix% &c🚫 &7Player &e%player% &7was temporarily banned by &e%sender%&7!'
+  
+  # Message displayed when the ban attempt fails (e.g. player already banned)
+  failed: '%teracore_prefix% &4🚫 &cPlayer &e%player% &cis already banned!'
+  
+  # Permission required to execute the /tempban command
+  permission: teracore.tempban

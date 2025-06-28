@@ -1,0 +1,9 @@
+# Permission for administrators
+admin_permission: teracore.admin
+
+message:
+  # Message displayed when the player has no permission
+  no_permission: '%teracore_prefix% &4✘ &cYou do not have permission!'
+  
+  # Message displayed when the specified player is not found
+  player_not_found: '%teracore_prefix% &4✘ &cThe player was not found!'

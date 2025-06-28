@@ -1,0 +1,41 @@
+command:
+  # Hilfe-Nachricht, die den Spielern erklärt, wie der Teleport-Befehl verwendet wird
+  help: '%teracore_prefix% &e❓ &7/%command% <Spieler>'
+
+  # Argument 1: Teleportiert den Spieler zu einer Location oder einem anderen Spieler
+  args1:
+
+    # Nachricht bei gesendeter Anfrage
+    quest: '%teracore_prefix% &e📨 &7Deine &e/%command% &7-Anfrage wurde erfolgreich gesendet!'
+
+    failed: '%teracore_prefix% &c✖ Du hast dem Spieler bereits eine Anfrage gesendet!'
+
+    empty: '%teracore_prefix% &c✖ Der Spieler &e%trust_name% &chat dir keine Anfrage gesendet!'
+
+    trust:
+      text:
+        - '%teracore_prefix% &e📥 &7Du hast eine %command%-Anfrage erhalten!'
+        - '%teracore_prefix% &e👤 &7Von: &e%trust_name%'
+        - '%teracore_prefix% &7Antworte mit &a%accept% &7oder &c%deny%&7.'
+
+      hover:
+        accept:
+          text: '&aAnnehmen'
+          hover: '&a✅ Anfrage annehmen'
+          click: '/tpaccept %trust_name%'
+          player: '%teracore_prefix% &a✔ Deine Teleport-Anfrage wurde angenommen!'
+          trust: '%teracore_prefix% &a✔ Du hast die Teleport-Anfrage angenommen!'
+
+        deny:
+          text: '&cAblehnen'
+          hover: '&c❌ Anfrage ablehnen'
+          click: '/tpadeny %trust_name%'
+          player: '%teracore_prefix% &c✘ Deine Teleport-Anfrage wurde abgelehnt!'
+          trust: '%teracore_prefix% &c✘ Du hast die Teleport-Anfrage abgelehnt!'
+
+    # Berechtigungen für die Nutzung der jeweiligen Teleport-Befehle
+    permission:
+      tpa: 'teracore.tpa'             # Berechtigung für /tpa
+      tpahere: 'teracore.tpahere'     # Berechtigung für /tpahere
+      tpaccept: 'teracore.tpaccept'   # Berechtigung für /tpaccept
+      tpadeny: 'teracore.tpadeny'     # Berechtigung für /tpadeny

@@ -1,0 +1,6 @@
+command:
+  help: '%teracore_prefix% &e❓ &7/banlist <Seite>'
+  permission: 'teracore.banlist'
+  message:
+    split: '%teracore_prefix% &7📄 Banliste - Seite &e%seite% &7von &e%max%'
+    info: '&7👤 Spieler: &e%player%, &7⏳ Dauer: &e%time%'

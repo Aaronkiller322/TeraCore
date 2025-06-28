@@ -1,0 +1,78 @@
+command:
+  list:
+    # Message displayed when the player requests a list of their set homes
+    message: '%teracore_prefix% &e⭐ &7Available homes: &e'
+    
+    # Message displayed when the specified home is not found
+    failed: '%teracore_prefix% &4✘ &cThe home &e%home% &ccould not be found!'
+    
+    # Message displayed when the player is successfully teleported to a home
+    teleport: '%teracore_prefix% &a✔ &7You have been teleported to home &e%home%&7!'
+    
+    # Separator used to list multiple homes
+    split: '&7, &e'
+    
+    # Message displayed when the player has no homes set
+    empty: '%teracore_prefix% &c✘ You have not set any homes yet!'
+
+  sethome:
+    # Help message explaining how to use the /sethome command
+    help: '%teracore_prefix% &e❓ &7Usage: &e/sethome <name>'
+    
+    # Message displayed when a home is successfully set
+    message: '%teracore_prefix% &a✔ &7Home &e%home% &7successfully set!'
+    
+    # Message displayed when trying to set a home with a name that already exists
+    failed: '%teracore_prefix% &4✘ &cThe home &e%home% &calready exists!'
+    
+    # Permission required to use the /sethome command
+    permission: teracore.sethome
+    
+    maxhome:
+      # Enables the limit for maximum allowed homes
+      enabled: true
+      
+      # Maximum number of homes a regular player is allowed to set
+      max_home: 40 # By default, players may set up to 40 homes
+      
+      # If the amount in the permission (teracore.maxhome.%amount%) is higher than max_home,
+      # the player will have 0 homes available
+
+      # Permission defining the maximum number of homes per player
+      permission: teracore.maxhome.%amount%
+      
+      # Message displayed when a player tries to set more homes than allowed
+      message: '%teracore_prefix% &4✘ &cYou cannot set more than &e%amount% &chomes!'
+      
+      admin:
+        # Allows administrators to ignore the home limit
+        ignore_limit: false # If true, admins can set unlimited homes
+        
+        # Permission required for admins to use the ignore limit setting
+        permission: teracore.maxhome.ignorelimit
+
+  delhome:
+    # Help message explaining how to use the /delhome command
+    help: '%teracore_prefix% &e❓ &7Usage: &e/delhome <name>'
+    
+    # Message displayed when a home is successfully deleted
+    message: '%teracore_prefix% &a✔ &7Home &e%home% &7was successfully deleted!'
+    
+    # Message displayed when the home to be deleted does not exist
+    failed: '%teracore_prefix% &4✘ &cThe home &e%home% &ccould not be found!'
+    
+    # Permission required to use the /delhome command
+    permission: teracore.delhome
+
+  movehome:
+    # Help message explaining how to use the /movehome command
+    help: '%teracore_prefix% &e❓ &7Usage: &e/movehome <name>'
+    
+    # Message displayed when a home is successfully moved
+    message: '%teracore_prefix% &a✔ &7Home &e%home% &7was successfully moved!'
+    
+    # Message displayed when the specified home does not exist
+    failed: '%teracore_prefix% &4✘ &cThe home &e%home% &ccould not be found!'
+    
+    # Permission required to use the /movehome command
+    permission: teracore.movehome

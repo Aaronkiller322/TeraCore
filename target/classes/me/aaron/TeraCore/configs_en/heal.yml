@@ -1,0 +1,19 @@
+command:
+  # Help message explaining how to use the command
+  help: '%teracore_prefix% &e❓ &7/heal <player>'
+  
+  # Argument 0 (using the /heal command on yourself)
+  args0:
+    # Message displayed when the player uses the command on themselves
+    usage: '%teracore_prefix% &e❤ &7You have been successfully healed!'
+    
+    # Permission required to use the /heal command on yourself
+    permission: teracore.heal
+  
+  # Argument 1 (using the /heal command on another player)
+  args1:
+    # Message displayed when the player heals another player
+    usage: '%teracore_prefix% &e❤ &7You have successfully healed &e%player%&7!'
+    
+    # Permission required to use the /heal command on another player
+    permission: teracore.heal.other

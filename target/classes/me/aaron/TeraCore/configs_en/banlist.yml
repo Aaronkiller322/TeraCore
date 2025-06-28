@@ -1,0 +1,13 @@
+command:
+  help: '%teracore_prefix% &e❓ &7Usage: &e/banlist <page>'
+  permission: teracore.banlist
+  message:
+    split: '%teracore_prefix% &7📄 Ban List – Page &e%seite% &7of &e%max%'
+    info: '&7👤 Player: &e%player% %info%'
+    empty: '&cNo players have been banned!'
+  info:
+    text: '&e[Info]'
+    list:
+    - '&7⏳ Duration &8► &e%temp%'
+    - '&7🔨 Banned by &8► &e%sender%'
+    - '&7📄 Reason &8► &e%reason%'

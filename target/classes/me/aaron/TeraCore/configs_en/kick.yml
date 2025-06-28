@@ -1,0 +1,23 @@
+kick:
+  # Message sent to the player when they are kicked
+  message:
+  - '%teracore_name%'
+  - ' '
+  - '&c✖ &7You have been kicked! &c✖'
+  - '&a⚑ &7By: &e%sender%'
+  - '&6❖ &7Reason: &e%reason%'
+  - ' '
+  - '%teracore_name%'
+  
+  # Message when no reason is provided
+  no_reason: No reason provided!
+
+command:
+  # Help message for the kick command
+  help: '%teracore_prefix% &e❓ &7/kick <player> <reason>'
+  
+  # Message displayed when the kick was successful
+  usage: '%teracore_prefix% &c🚫 &7Player &e%player% &7was kicked by &e%sender%&7!'
+  
+  # Permission required to use the kick command
+  permission: teracore.kick

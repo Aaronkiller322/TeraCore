@@ -1,0 +1,10 @@
+command:
+  # Help message that explains to players how to use the command
+  help: '%teracore_prefix% &e❓ &7/skull <player>'
+  
+  args1:
+    # Message that informs the player they have received another player's head
+    usage: '%teracore_prefix% &e💀 &7You have received the head of &e%trust%&7!'
+    
+    # Permission required to execute the command
+    permission: teracore.skull

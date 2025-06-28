@@ -1,0 +1,25 @@
+placeholder:
+  # Placeholder for types used in the teleport command
+  type:
+    location: location
+    player: player
+
+command:
+  # Help message that explains to players how to use the teleport command
+  help: '%teracore_prefix% &e❓ &7/teleport <player/location> <player/location>'
+  
+  # Argument 1 (Teleports the player to a location or another player)
+  args1:
+    # Message indicating the player was successfully teleported
+    usage: '%teracore_prefix% &e🌍 &7You have been teleported to &e%location%&7!'
+    
+    # Permission to teleport to a location or player
+    permission: teracore.teleport.%type%
+  
+  # Argument 2 (Teleports another player to a location or another player)
+  args2:
+    # Message indicating another player was successfully teleported
+    usage: '%teracore_prefix% &e🌍 &7Player &e%player% &7has been teleported to &e%location%&7!'
+    
+    # Permission to teleport another player
+    permission: teracore.teleport.%type%.other

@@ -1,0 +1,49 @@
+# Global permissions for all fixes
+permissions:
+  all: 'teracore.statefix.*'
+
+# ============================
+# Settings: Gamemode Fixes
+# ============================
+gamemode:
+
+  # Permission for all gamemode-related fixes
+  permission_all: 'teracore.statefix.gamemode.*'
+
+  # Retain gamemode when switching between worlds
+  world_switch:
+    enabled: true
+    permission: 'teracore.statefix.gamemode.world_switch'
+
+  # Retain gamemode when (re-)joining the server
+  join:
+    enabled: true
+    permission: 'teracore.statefix.gamemode.join'
+
+  # Retain gamemode after a server reload
+  reload:
+    enabled: true
+    permission: 'teracore.statefix.gamemode.reload'
+
+# ============================
+# Settings: Fly Fixes
+# ============================
+fly:
+
+  # Permission for all fly-related fixes
+  permission_all: 'teracore.statefix.fly.*'
+
+  # Retain fly state when switching between worlds
+  world_switch:
+    enabled: true
+    permission: 'teracore.statefix.fly.world_switch'
+
+  # Retain fly state when (re-)joining the server
+  join:
+    enabled: true
+    permission: 'teracore.statefix.fly.join'
+
+  # Retain fly state after a server reload
+  reload:
+    enabled: true
+    permission: 'teracore.statefix.fly.reload'

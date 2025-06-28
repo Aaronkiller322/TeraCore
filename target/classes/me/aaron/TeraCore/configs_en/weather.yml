@@ -1,0 +1,16 @@
+placeholder:
+  # Placeholder for different weather types
+  clear: ☀ Clear # Clear weather
+  rain: 🌧 Rain # Rainy weather
+  thunder: ⛈ Thunderstorm # Thunderstorm weather
+
+command:
+  # Help message showing how to use the command
+  help: '%teracore_prefix% &e❓ &7/weather <Clear/Rain/Thunder>'
+  
+  args1:
+    # Message displayed when the weather is successfully changed
+    usage: '%teracore_prefix% &e☁ &7The weather has been changed to &e%weather%&7!'
+    
+    # Permission required to set a specific weather type
+    permission: teracore.weather.%weather%

@@ -1,0 +1,24 @@
+placeholder:
+  # Status of the placeholder
+  enabled: Enabled # Placeholder enabled
+  disabled: Disabled # Placeholder disabled
+
+command:
+  # Help message explaining how to use the command
+  help: '%teracore_prefix% &e❓ &7/fly <player>'
+  
+  # Argument 0 (applying the /fly command to yourself)
+  args0:
+    # Message displayed when the player applies the command to themselves
+    usage: '%teracore_prefix% &e🪶 &7Your fly mode has been &e%status%&7!'
+    
+    # Permission required to use the /fly command on yourself
+    permission: teracore.fly
+  
+  # Argument 1 (applying the /fly command to another player)
+  args1:
+    # Message displayed when the player applies the command to another player
+    usage: '%teracore_prefix% &e🪶 &7Fly mode of &e%trust% &7has been &e%status%&7!'
+    
+    # Permission required to use the /fly command on another player
+    permission: teracore.fly.other
