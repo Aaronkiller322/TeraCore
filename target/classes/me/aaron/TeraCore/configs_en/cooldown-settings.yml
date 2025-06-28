@@ -1,0 +1,7 @@
+cooldown:
+  enabled: true
+  second: 3
+  message: '%teracore_prefix% &4🚫 &cYou’re too fast! Please wait &e%time% seconds!'
+  bypass:
+    enabled: true
+    permission: teracore.cooldown.bypass
