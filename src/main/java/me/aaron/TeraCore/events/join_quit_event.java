@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import me.aaron.TeraCore.main.LanguageLoader;
+import me.aaron.TeraCore.util.UserData;
 import org.bukkit.GameEvent;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -56,7 +57,10 @@ public class join_quit_event implements Listener {
 	@EventHandler
 	public void onjoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		
+
+		if(!TeraMain.userDataHashMap.containsKey(player.getUniqueId())){
+			TeraMain.userDataHashMap.put(player.getUniqueId(), new UserData(player.getUniqueId()));
+		}
 		Eco_Manager manager = new Eco_Manager(player.getUniqueId());
 		if(!manager.hasAccount()) {
 			manager.createAccount();

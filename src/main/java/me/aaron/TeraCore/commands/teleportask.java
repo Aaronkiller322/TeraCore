@@ -1,10 +1,12 @@
 package me.aaron.TeraCore.commands;
 
 import me.aaron.TeraCore.color.PlaceHolder;
+import me.aaron.TeraCore.events.TeleportManager;
 import me.aaron.TeraCore.main.ConfigLoader;
 import me.aaron.TeraCore.main.DefaultConfig;
 import me.aaron.TeraCore.main.LanguageLoader;
 import me.aaron.TeraCore.main.TeraMain;
+import me.aaron.TeraCore.util.UserData;
 import me.aaron.TeraCore.util.chat.TeraHoverText;
 import me.aaron.TeraCore.util.chat.TeraText;
 import org.bukkit.Bukkit;
@@ -23,14 +25,15 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class teleportask implements CommandExecutor {
 
 	File file;
 	FileConfiguration config;
 
-	private static HashMap<Player, ArrayList<Player>> tpa = new HashMap<>();
-	private static HashMap<Player, ArrayList<Player>> tpahere = new HashMap<>();
+	private static HashMap<UUID, ArrayList<UUID>> tpa = new HashMap<>();
+	private static HashMap<UUID, ArrayList<UUID>> tpahere = new HashMap<>();
 
 	public teleportask() {
 		String filetype = getClass().getSimpleName();
@@ -57,6 +60,7 @@ public class teleportask implements CommandExecutor {
 			if (command.getName().equalsIgnoreCase("tpa") ||
 					command.getName().equalsIgnoreCase("tpahere") ||
 					command.getName().equalsIgnoreCase("tpaccept") ||
+					command.getName().equalsIgnoreCase("tpacancel") ||
 					command.getName().equalsIgnoreCase("tpadeny")) {
 				if (args.length == 1) {
 					if (player
@@ -68,28 +72,59 @@ public class teleportask implements CommandExecutor {
 									DefaultConfig.getConfig().getString("message.player_not_found")));
 							return true;
 						}
-
+						if(command.getName().equalsIgnoreCase("tpacancel")){
+							if(checkAndRemove(player.getUniqueId(), trust.getUniqueId())){
+								trust.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.cancel.trust").replace("%player%", player.getName())));
+								player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.cancel.player")));
+								return true;
+							}else{
+								player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.cancel.failed")));
+								return true;
+							}
+						}
 						if(command.getName().equalsIgnoreCase("tpa") || command.getName().equalsIgnoreCase("tpahere")){
-							ArrayList<Player> list = new ArrayList<>();
+							ArrayList<UUID> list = new ArrayList<>();
 
+							UUID uuid = trust.getUniqueId();
+							UserData userData;
+							if(TeraMain.userDataHashMap.containsKey(uuid)){
+								userData = TeraMain.userDataHashMap.get(uuid);
+							}else {
+								userData = new UserData(uuid);
+							}
+
+							try{
+								boolean status = (boolean) userData.getData(UserData.FilePath.TPATOGGLE);
+								if(!status){
+									player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.blocked")));
+									return true;
+								}
+
+							}catch (Exception ex){
+								userData.setData(UserData.FilePath.TPATOGGLE, true);
+							}
 
 							if(command.getName().equalsIgnoreCase("tpahere")) {
-								if (tpahere.containsKey(trust)) {
-									list = tpahere.get(trust);
+								if (tpahere.containsKey(trust.getUniqueId())) {
+									list = tpahere.get(trust.getUniqueId());
 								}
 							}
 							if(command.getName().equalsIgnoreCase("tpa")) {
-								if (tpa.containsKey(trust)) {
-									list = tpa.get(trust);
+								if (tpa.containsKey(trust.getUniqueId())) {
+									list = tpa.get(trust.getUniqueId());
 								}
 							}
-							if(!list.contains(player)){
-								list.add(player);
+							if(!list.contains(player.getUniqueId())){
+								list.add(player.getUniqueId());
+
+								TeleportManager.getInstance().playSound(trust.getLocation(), trust, "command.args1.setting.sound", false, config);
+								TeleportManager.getInstance().showParticleCircle(trust.getLocation(), trust, "command.args1.setting.particle", false, config);
+
 								if(command.getName().equalsIgnoreCase("tpa")) {
-									tpa.put(trust, list);
+									tpa.put(trust.getUniqueId(), list);
 								}
 								if(command.getName().equalsIgnoreCase("tpahere")) {
-									tpahere.put(trust, list);
+									tpahere.put(trust.getUniqueId(), list);
 								}
 								player.sendMessage(PlaceHolder.replacePlaceholder(
 										config.getString("command.args1.quest").replace("%command%", command.getName().toLowerCase())));
@@ -131,35 +166,64 @@ public class teleportask implements CommandExecutor {
 
 									teraText.sendMessage(trust);
 								}
+								if(config.getBoolean("command.args1.timer.enabled")){
+									int second = config.getInt("command.args1.timer.second");
+									String message_trust = config.getString("command.args1.timer.message.trust");
+									String message_player = config.getString("command.args1.timer.message.player");
+
+									player.sendMessage(PlaceHolder.replacePlaceholder(message_trust.replace("%time%", String.valueOf(second))));
+									trust.sendMessage(PlaceHolder.replacePlaceholder(message_player.replace("%time%", String.valueOf(second))));
+
+
+									Bukkit.getScheduler().runTaskLater(TeraMain.getPlugin(), new Runnable() {
+
+										UUID trustuuid = trust.getUniqueId();
+										UUID plaeruuid = player.getUniqueId();
+
+										@Override
+										public void run() {
+											if(checkAndRemove(plaeruuid, trustuuid)){
+												if(player != null){
+													player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.timer.message.finish")));
+												}
+												if(trust != null){
+													trust.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.timer.message.finish")));
+												}
+											}
+										}
+									},20 * second);
+								}
+								return true;
+
 							}else{
 								player.sendMessage(PlaceHolder.replacePlaceholder(
 										config.getString("command.args1.failed")));
 							}
 						}
 						if(command.getName().equalsIgnoreCase("tpaccept")){
-							if(tpa.containsKey(player)){
-								if(tpa.get(player).contains(trust)) {
+							if(tpa.containsKey(player.getUniqueId())){
+								if(tpa.get(player.getUniqueId()).contains(trust.getUniqueId())) {
 									trust.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.accept.player")));
 									player.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.accept.trust")));
 									trust.teleport(player);
-									ArrayList<Player> array = tpa.get(player);
-									array.remove(trust);
-									tpa.put(player, array);
+									ArrayList<UUID> array = tpa.get(player.getUniqueId());
+									array.remove(trust.getUniqueId());
+									tpa.put(player.getUniqueId(), array);
 									return true;
 								}
 							}
-							if(tpahere.containsKey(player)){
-								if(tpahere.get(player).contains(trust)) {
+							if(tpahere.containsKey(player.getUniqueId())){
+								if(tpahere.get(player.getUniqueId()).contains(trust.getUniqueId())) {
 									trust.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.accept.player")));
 									player.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.accept.trust")));
 									player.teleport(trust);
-									ArrayList<Player> array = tpahere.get(player);
-									array.remove(trust);
-									tpahere.put(player, array);
+									ArrayList<UUID> array = tpahere.get(player.getUniqueId());
+									array.remove(trust.getUniqueId());
+									tpahere.put(player.getUniqueId(), array);
 									return true;
 								}
 							}
@@ -169,27 +233,27 @@ public class teleportask implements CommandExecutor {
 						}
 
 						if(command.getName().equalsIgnoreCase("tpadeny")){
-							if(tpa.containsKey(player)){
-								if(tpa.get(player).contains(trust)) {
+							if(tpa.containsKey(player.getUniqueId())){
+								if(tpa.get(player.getUniqueId()).contains(trust.getUniqueId())) {
 									trust.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.deny.player")));
 									player.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.deny.trust")));
-									ArrayList<Player> array = tpa.get(player);
-									array.remove(trust);
-									tpa.put(player, array);
+									ArrayList<UUID> array = tpa.get(player.getUniqueId());
+									array.remove(trust.getUniqueId());
+									tpa.put(player.getUniqueId(), array);
 									return true;
 								}
 							}
-							if(tpahere.containsKey(player)){
-								if(tpahere.get(player).contains(trust)) {
+							if(tpahere.containsKey(player.getUniqueId())){
+								if(tpahere.get(player.getUniqueId()).contains(trust.getUniqueId())) {
 									trust.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.deny.player")));
 									player.sendMessage(PlaceHolder.replacePlaceholder(
 											config.getString("command.args1.trust.hover.deny.trust")));
-									ArrayList<Player> array = tpahere.get(player);
-									array.remove(trust);
-									tpahere.put(player, array);
+									ArrayList<UUID> array = tpahere.get(player.getUniqueId());
+									array.remove(trust.getUniqueId());
+									tpahere.put(player.getUniqueId(), array);
 									return true;
 								}
 							}
@@ -197,7 +261,6 @@ public class teleportask implements CommandExecutor {
 									config.getString("command.args1.empty").replace("%trust_name%", trust.getName())));
 							return true;
 						}
-
 						return true;
 					} else {
 						player.sendMessage(PlaceHolder
@@ -205,8 +268,6 @@ public class teleportask implements CommandExecutor {
 						return true;
 					}
 				}
-
-
 				player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.help").replace("%command%", command.getName().toLowerCase())));
 				return true;
 			}
@@ -214,5 +275,24 @@ public class teleportask implements CommandExecutor {
 		return false;
 	}
 
+	public boolean checkAndRemove(UUID playerUUID, UUID trustUUUID){
+		if(tpa.containsKey(trustUUUID)){
+			ArrayList<UUID> array = tpa.get(trustUUUID);
+			if(array.contains(playerUUID)){
+				array.remove(playerUUID);
+				tpa.put(trustUUUID, array);
+				return true;
+			}
+		}
+		if(tpahere.containsKey(trustUUUID)){
+			ArrayList<UUID> array = tpahere.get(trustUUUID);
+			if(array.contains(playerUUID)){
+				array.remove(playerUUID);
+				tpahere.put(trustUUUID, array);
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

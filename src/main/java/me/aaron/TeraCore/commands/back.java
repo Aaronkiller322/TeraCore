@@ -56,8 +56,8 @@ public class back implements CommandExecutor, TabCompleter {
 					if (args.length == 0) {
 
 						ArrayList<Location> loc = new ArrayList<>();
-						if(TeraMain.back_location.containsKey(player)){
-							loc = TeraMain.back_location.get(player);
+						if(TeraMain.back_location.containsKey(player.getUniqueId())){
+							loc = TeraMain.back_location.get(player.getUniqueId());
 						}
 
 						if(loc.size() < 1){
@@ -69,7 +69,7 @@ public class back implements CommandExecutor, TabCompleter {
 						player.teleport(location);
 						loc.remove(location);
 
-						TeraMain.back_location.put(player, loc);
+						TeraMain.back_location.put(player.getUniqueId(), loc);
 
 						player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args0.usage")));
 						return true;
@@ -84,8 +84,8 @@ public class back implements CommandExecutor, TabCompleter {
 							num = 1;
 						}
 						ArrayList<Location> loc = new ArrayList<>();
-						if(TeraMain.back_location.containsKey(player)){
-							loc = TeraMain.back_location.get(player);
+						if(TeraMain.back_location.containsKey(player.getUniqueId())){
+							loc = TeraMain.back_location.get(player.getUniqueId());
 						}
 
 						if(loc.size() < 1){
@@ -103,7 +103,7 @@ public class back implements CommandExecutor, TabCompleter {
 						player.teleport(location);
 						loc.remove(location);
 
-						TeraMain.back_location.put(player, loc);
+						TeraMain.back_location.put(player.getUniqueId(), loc);
 
 						player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args0.usage")));
 						return true;

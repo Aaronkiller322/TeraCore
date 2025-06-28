@@ -105,6 +105,8 @@ public class CommandMain {
 		TeraMain.getPlugin().getCommand("tpahere").setExecutor((CommandExecutor) new teleportask());
 		TeraMain.getPlugin().getCommand("tpaccept").setExecutor((CommandExecutor) new teleportask());
 		TeraMain.getPlugin().getCommand("tpadeny").setExecutor((CommandExecutor) new teleportask());
+		TeraMain.getPlugin().getCommand("tpatoggle").setExecutor((CommandExecutor) new tpatoggle());
+		TeraMain.getPlugin().getCommand("tpacancel").setExecutor((CommandExecutor) new teleportask());
 		
 	}
 	

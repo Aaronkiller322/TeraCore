@@ -37,6 +37,11 @@ public class TeleportManager implements Listener {
 
 	private String datafolder = "plugins/" + TeraMain.getPlugin().getName() + "/lang_" + TeraMain.getLanguage();
 
+	private static TeleportManager teleportManager;
+
+	public static TeleportManager getInstance(){
+		return teleportManager;
+	}
 
 	private HashMap<Player, Location> wait = new HashMap<Player, Location>();
 	private HashMap<Player, Integer> time = new HashMap<Player, Integer>();
@@ -45,6 +50,7 @@ public class TeleportManager implements Listener {
 	private ArrayList<Player> allowed = new ArrayList<Player>();
 
 	public TeleportManager() {
+		teleportManager = this;
 		String filetype = getClass().getSimpleName();
 		LanguageLoader.load(LanguageLoader.LanguageFolder.gobal, filetype);
 		File temp = new File(datafolder, filetype + ".yml");
@@ -158,21 +164,15 @@ public class TeleportManager implements Listener {
 		}
 
 		ArrayList<Location> loc = new ArrayList<>();
-		if(TeraMain.back_location.containsKey(player)){
-			loc = TeraMain.back_location.get(player);
+		if(TeraMain.back_location.containsKey(player.getUniqueId())){
+			loc = TeraMain.back_location.get(player.getUniqueId());
 		}
 		loc.add(event.getFrom());
-		TeraMain.back_location.put(player, loc);
+		TeraMain.back_location.put(player.getUniqueId(), loc);
 
 		if(blacklist_effect(player, event.getTo().getWorld().getName())) return;
-
-
-
-
 		if (isBypass(player)) {
-			
-			showParticleCircle(event.getTo(), player);
-			
+			showParticleCircle(event.getTo(), player, "teleport.particle", true, config);
 			return;
 		}
 		if (!event.isCancelled()) {
@@ -207,7 +207,6 @@ public class TeleportManager implements Listener {
 								this.cancel();
 								return;
 							}
-
 							boolean chat = config.getBoolean("teleport.delay.chat.enabled");
 							int sek = amount - counter;
 							if (chat) {
@@ -217,8 +216,7 @@ public class TeleportManager implements Listener {
 													.replace("%seconds%", String.valueOf(sek))));
 								}
 							}
-
-							playSound(player, player.getLocation(), "teleport.delay.sound");
+							playSound(player.getLocation(), player, "teleport.delay.sound",true, config);
 							boolean particle = config.getBoolean("teleport.delay.particle.enabled");
 							if (particle) {
 								showParticleCircleDelay(player.getLocation(), player, maxRuns, counter, sek);
@@ -240,13 +238,13 @@ public class TeleportManager implements Listener {
 				}
 			}
 			resetPlayerState(player);
-			playSound(player, event.getTo(), "teleport.sound");
-			showParticleCircle(event.getTo(), player);
+			playSound(event.getTo(), player, "teleport.sound", true, config);
+			showParticleCircle(event.getTo(), player, "teleport.particle", true, config);
 
 		}
 	}
 
-	private void playSound(Player player, Location location, String configPrefix) {
+	public void playSound(Location location, Player player, String configPrefix, boolean useConfig, FileConfiguration config) {
 		try {
 			if (config.getBoolean(configPrefix + ".enabled")) {
 				Sound sound = Sound.valueOf(config.getString(configPrefix + ".type").toUpperCase());
@@ -254,19 +252,21 @@ public class TeleportManager implements Listener {
 				float volume = (float) config.getDouble(configPrefix + ".volume");
 				
 				//player.getWorld().playSound(location, sound, pitch, volume);
-				
-				if(config.getBoolean("teleport.see-and-hear.online_player")) {
-					for(Player online : Bukkit.getOnlinePlayers()) {
-						if(!online.getName().equalsIgnoreCase(player.getName())) {
-						online.playSound(location, sound, volume, pitch);
+				if(useConfig) {
+					if (config.getBoolean("teleport.see-and-hear.online_player")) {
+						for (Player online : Bukkit.getOnlinePlayers()) {
+							if (!online.getName().equalsIgnoreCase(player.getName())) {
+								online.playSound(location, sound, volume, pitch);
+							}
 						}
+
 					}
-				
-				}
-				if(config.getBoolean("teleport.see-and-hear.sender")) {
+					if (config.getBoolean("teleport.see-and-hear.sender")) {
+						player.playSound(location, sound, volume, pitch);
+					}
+				}else{
 					player.playSound(location, sound, volume, pitch);
 				}
-				
 				
 			}
 		} catch (Exception e) {
@@ -287,16 +287,16 @@ public class TeleportManager implements Listener {
 		return Color.WHITE;
 	}
 
-	public void showParticleCircle(Location location, Player player) {
-		if (!config.getBoolean("teleport.particle.enabled"))
+	public void showParticleCircle(Location location, Player player, String configPrefix, boolean useConfig, FileConfiguration config) {
+		if (!config.getBoolean(configPrefix + ".enabled"))
 			return;
 
-		final double radius = config.getDouble("teleport.particle.radius");
-		final String colorName = config.getString("teleport.particle.color");
-		final double size = config.getDouble("teleport.particle.size");
+		final double radius = config.getDouble(configPrefix + ".radius");
+		final String colorName = config.getString(configPrefix + ".color");
+		final double size = config.getDouble(configPrefix + ".size");
 		final DustOptions dustOptions = new DustOptions(getColorFromString(colorName), (float) size);
-		final double height = config.getDouble("teleport.particle.height");
-		final double spread = config.getDouble("teleport.particle.spread");
+		final double height = config.getDouble(configPrefix + ".height");
+		final double spread = config.getDouble(configPrefix + ".spread");
 
 		new BukkitRunnable() {
 			double angle = 0;
@@ -308,17 +308,20 @@ public class TeleportManager implements Listener {
 						double x = radius * Math.cos(angle);
 						double z = radius * Math.sin(angle);
 						Location particleLocation = location.clone().add(x, y, z);
-						
-						
-						if(config.getBoolean("teleport.see-and-hear.online_player")) {
-							for(Player online : Bukkit.getOnlinePlayers()) {
-								if(!online.getName().equalsIgnoreCase(player.getName())) {
-									online.spawnParticle(Particle.REDSTONE, particleLocation, 1, dustOptions);
+
+						if(useConfig) {
+							if (config.getBoolean("teleport.see-and-hear.online_player")) {
+								for (Player online : Bukkit.getOnlinePlayers()) {
+									if (!online.getName().equalsIgnoreCase(player.getName())) {
+										online.spawnParticle(Particle.REDSTONE, particleLocation, 1, dustOptions);
+									}
 								}
+
 							}
-						
-						}
-						if(config.getBoolean("teleport.see-and-hear.sender")) {
+							if (config.getBoolean("teleport.see-and-hear.sender")) {
+								player.spawnParticle(Particle.REDSTONE, particleLocation, 1, dustOptions);
+							}
+						}else{
 							player.spawnParticle(Particle.REDSTONE, particleLocation, 1, dustOptions);
 						}
 						angle += Math.PI / 16;

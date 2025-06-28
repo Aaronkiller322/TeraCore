@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="TeraCore">
-    <output-path>$PROJECT_DIR$/out/artifacts/Test</output-path>
+    <output-path>$USER_HOME$/Documents/Bukkit/plugins</output-path>
     <root id="archive" name="TeraCore.jar">
       <element id="module-output" name="TeraCore" />
       <element id="library" level="project" name="Maven: net.kyori:adventure-api:4.13.0" />

@@ -1,0 +1,11 @@
+command:
+  # Hilfe-Nachricht, die den Spielern erklärt, wie der Teleport-Befehl verwendet wird
+  help: '%teracore_prefix% &e❓ &7/tpatoggle'
+
+  placeholder:
+    enabled: '&a✅ Aktiviert'
+    disabled: '&c❌ Deaktiviert'
+
+  args0:
+    permission: 'teracore.tpatoggle'
+    usage: '%teracore_prefix% &7Tpa-Anfragen wurden &e%status% &7!'

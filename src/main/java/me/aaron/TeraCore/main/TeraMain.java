@@ -1,7 +1,7 @@
 package me.aaron.TeraCore.main;
 
-import me.aaron.TeraCore.events.StateFix;
-import me.aaron.TeraCore.events.StateManager;
+import me.aaron.TeraCore.events.*;
+import me.aaron.TeraCore.util.UserData;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandExecutor;
@@ -19,8 +19,6 @@ import me.aaron.TeraCore.economy.Eco_Manager;
 import me.aaron.TeraCore.economy.EconomyImplementer;
 import me.aaron.TeraCore.economy.EconomyMain;
 import me.aaron.TeraCore.economy.MySQLDatabase;
-import me.aaron.TeraCore.events.CommandBlockEvent;
-import me.aaron.TeraCore.events.EventMain;
 import me.aaron.TeraCore.util.KickManager;
 import me.aaron.TeraCore.util.MotdManager;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -30,6 +28,7 @@ import me.aaron.TeraCore.economy.EconomyImplementer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 
 public class TeraMain extends JavaPlugin implements Listener {
@@ -38,13 +37,18 @@ public class TeraMain extends JavaPlugin implements Listener {
 	public String name;
 	// String setmoney = "";
 
-	public static HashMap<Player, ArrayList<Location>> back_location = new HashMap<>();
+	public static HashMap<UUID, ArrayList<Location>> back_location = new HashMap<>();
+
+	public static HashMap<UUID, UserData> userDataHashMap = new HashMap<>();
 
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();
 		try {
 			singleton = this;
+			for(Player online : Bukkit.getOnlinePlayers()){
+				userDataHashMap.put(online.getUniqueId(), new UserData(online.getUniqueId()));
+			}
 			// Initialisiere wichtige Ressourcen
 			PrefixManager.loadPrefix();
 			MotdManager.loadConfig();

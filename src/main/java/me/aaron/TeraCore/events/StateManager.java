@@ -1,6 +1,7 @@
 package me.aaron.TeraCore.events;
 
 import me.aaron.TeraCore.main.TeraMain;
+import me.aaron.TeraCore.util.UserData;
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,9 +13,6 @@ import java.util.UUID;
 
 public class StateManager {
 
-    private final File file;
-    private final FileConfiguration config;
-
     public static StateManager of(Player player) {
         return new StateManager(player.getUniqueId());
     }
@@ -23,40 +21,30 @@ public class StateManager {
         return new StateManager(uuid);
     }
 
+    private UserData userData;
 
     public StateManager(UUID uuid) {
-        String dataFolder = "plugins" + File.separator + TeraMain.getPlugin().getName() + File.separator + "data" + File.separator + "statefix";
-        this.file = new File(dataFolder, uuid.toString() + ".yml");
-
-        if (!file.exists()) {
-            try {
-                file.getParentFile().mkdirs();
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace(); // Option: Logger verwenden
-            }
+        if(TeraMain.userDataHashMap.containsKey(uuid)){
+            this.userData = TeraMain.userDataHashMap.get(uuid);
+        }else {
+            this.userData = new UserData(uuid);
         }
-
-        this.config = YamlConfiguration.loadConfiguration(file);
     }
 
-    public void setGameMode(GameMode gameMode) {
-        config.set("gamemode", gameMode.name());
-        save();
+    public void setGameMode(GameMode gamemode) {
+        userData.setData(UserData.FilePath.STATEFIX_GAMEMODE, gamemode.toString());
     }
 
     public void setAllowFlight(boolean status) {
-        config.set("allowflight", status);
-        save();
+        userData.setData(UserData.FilePath.STATEFIX_ALLOWFLIGHT, status);
     }
 
     public void setFlying(boolean status) {
-        config.set("flying", status);
-        save();
+        userData.setData(UserData.FilePath.STATEFIX_FLYING, status);
     }
 
     public GameMode getGamemode() {
-        String mode = config.getString("gamemode", "SURVIVAL");
+        String mode = String.valueOf(userData.getData(UserData.FilePath.STATEFIX_GAMEMODE));
         try {
             return GameMode.valueOf(mode.toUpperCase());
         } catch (IllegalArgumentException ex) {
@@ -64,19 +52,19 @@ public class StateManager {
         }
     }
 
-    public boolean getAllowFlight() {
-        return config.getBoolean("allowflight", false);
-    }
-
-    public boolean isFlying() {
-        return config.getBoolean("flying", false);
-    }
-
-    private void save() {
-        try {
-            config.save(file);
-        } catch (IOException e) {
-            e.printStackTrace(); // Option: Logger verwenden
+    public Boolean getAllowFlight() {
+        Object object = userData.getData(UserData.FilePath.STATEFIX_ALLOWFLIGHT);
+        if(object instanceof Boolean){
+            return (boolean) userData.getData(UserData.FilePath.STATEFIX_ALLOWFLIGHT);
         }
+        return false;
+    }
+
+    public Boolean isFlying() {
+        Object object = userData.getData(UserData.FilePath.STATEFIX_FLYING);
+        if(object instanceof Boolean){
+            return (boolean) userData.getData(UserData.FilePath.STATEFIX_FLYING);
+        }
+        return false;
     }
 }

@@ -1,37 +1,55 @@
 command:
-  # Help message explaining how to use the teleport command
+  # Help message that explains to players how to use the teleport command
   help: '%teracore_prefix% &e❓ &7/%command% <player>'
 
-  # Argument 1: Teleports the player to a location or another player
   args1:
+    # Message when a request has been sent
+    quest: '%teracore_prefix% &e📨 &7Your &e/%command% &7request has been successfully sent!'
 
-    # Message when a request is sent
-    quest: '%teracore_prefix% &e📨 &7Your &e/%command% &7-request has been sent successfully!'
-
+    # Message when a request to the player already exists
     failed: '%teracore_prefix% &c✖ You have already sent a request to this player!'
 
-    empty: '%teracore_prefix% &c✖ Player &e%trust_name% &chas not sent you a request!'
+    # Message when the target player has disabled TPA requests
+    blocked: '%teracore_prefix% &c✖ The player has disabled TPA requests!'
+
+    # Message when no TPA request from the specified player exists
+    empty: '%teracore_prefix% &c✖ The player &e%trust_name% &chas not sent you a request!'
+
+    cancel:
+      # Shown to the player who received the request
+      trust: '%teracore_prefix% &c✖ &e%player% &chas cancelled the TPA request!'
+
+      # Shown to the player who cancels their own request
+      player: '%teracore_prefix% &c✖ You have cancelled the TPA request!'
+
+      # Shown when trying to cancel a non-existent request
+      failed: '%teracore_prefix% &c✖ The player has not received a TPA request!'
 
     trust:
       text:
+        # Messages shown when receiving a request
         - '%teracore_prefix% &e📥 &7You have received a %command% request!'
         - '%teracore_prefix% &e👤 &7From: &e%trust_name%'
         - '%teracore_prefix% &7Reply with &a%accept% &7or &c%deny%&7.'
 
       hover:
         accept:
+          # Hover text and click action for "Accept"
           text: '&aAccept'
           hover: '&a✅ Accept request'
           click: '/tpaccept %trust_name%'
+          # Success messages for sender and receiver
           player: '%teracore_prefix% &a✔ Your teleport request has been accepted!'
-          trust: '%teracore_prefix% &a✔ You accepted the teleport request!'
+          trust: '%teracore_prefix% &a✔ You have accepted the teleport request!'
 
         deny:
-          text: '&cDecline'
-          hover: '&c❌ Decline request'
+          # Hover text and click action for "Deny"
+          text: '&cDeny'
+          hover: '&c❌ Deny request'
           click: '/tpadeny %trust_name%'
-          player: '%teracore_prefix% &c✘ Your teleport request has been declined!'
-          trust: '%teracore_prefix% &c✘ You declined the teleport request!'
+          # Denial messages for sender and receiver
+          player: '%teracore_prefix% &c✘ Your teleport request has been denied!'
+          trust: '%teracore_prefix% &c✘ You have denied the teleport request!'
 
     # Permissions for using the respective teleport commands
     permission:
@@ -39,3 +57,35 @@ command:
       tpahere: 'teracore.tpahere'     # Permission for /tpahere
       tpaccept: 'teracore.tpaccept'   # Permission for /tpaccept
       tpadeny: 'teracore.tpadeny'     # Permission for /tpadeny
+      tpacancel: 'teracore.tpacancel' # Permission for /tpacancel
+
+    timer:
+      # Enables the timer for TPA request expiration
+      enabled: true
+      second: 60  # Duration in seconds
+      message:
+        # Warning to the recipient shortly before expiration
+        trust: '%teracore_prefix% &e⏳ &cThe TPA request expires in &e%time% &cseconds!'
+
+        # Message to the sender about remaining time
+        player: '%teracore_prefix% &e⌛ &cYou have &e%time% &cseconds to respond!'
+
+        # Shown when the request expires automatically
+        finish: '%teracore_prefix% &e⌛ &cThe TPA request has expired.'
+
+    setting:
+      sound:
+        # Enables sound effects for TPA actions
+        enabled: true
+        type: UI_BUTTON_CLICK  # Sound type e.g. UI, BLOCK_NOTE, ENTITY_...
+        pitch: 1               # Pitch (1 = normal)
+        volume: 0.3            # Volume (0.0–1.0)
+
+      # Teleport particle settings for TPA actions
+      particle:
+        enabled: true
+        color: WHITE      # Particle color (e.g. RED, CYAN, PURPLE)
+        size: 1.5          # Size of the particle effect
+        radius: 1          # Radius around the player
+        height: 2.5        # Height above the ground
+        spread: 0.5        # Spread of the particles
