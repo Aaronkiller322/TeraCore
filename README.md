@@ -7,7 +7,8 @@ Außerdem bietet TeraCore:
 - Einen **flexiblen Prefix-Manager**
 - **HexColor-Support** (Hex-Farben in Texten)
 - Eigene **Placeholder** zur individuellen Gestaltung von Nachrichten
-
+- **Mehrsprachigkeit:** Deutsch und Englisch direkt integriert – weitere Sprachen können einfach manuell ergänzt werden
+- **Fly- & Gamemode-Fix**: Per Config kann festgelegt werden, dass Spieler ihren Flugmodus oder Spielmodus nach Weltwechsel, Reconnect oder `/reload` automatisch wieder erhalten – sofern sie die entsprechende Permission besitzen
 
 🎉 **TeraCore – Deine zentrale Schaltstelle für alles Wichtige auf dem Server.**  
 Modular, leistungsfähig und modern.
