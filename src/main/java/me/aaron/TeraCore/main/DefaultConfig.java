@@ -14,6 +14,7 @@ public class DefaultConfig {
 
 	public static void LoadDefaultConfig() {
 		String filetype = "default";
+		LanguageLoader.load(LanguageLoader.LanguageFolder.commands, filetype);
 		File temp = new File(CommandMain.datafolder, filetype + ".yml");
 		if (temp.exists()) {
 			file = temp;

@@ -73,7 +73,7 @@ public class teleportask implements CommandExecutor {
 							return true;
 						}
 						if(trust.getUniqueId().equals(player.getUniqueId())){
-							player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.cancel.self")));
+							player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.self")));
 							return true;
 						}
 						if(command.getName().equalsIgnoreCase("tpacancel")){
