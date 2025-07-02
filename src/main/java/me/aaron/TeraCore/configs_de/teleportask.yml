@@ -9,6 +9,9 @@ command:
     # Nachricht, wenn bereits eine Anfrage an den Spieler besteht
     failed: '%teracore_prefix% &c✖ Du hast dem Spieler bereits eine Anfrage gesendet!'
 
+    # Wird angezeigt, wenn ein Spieler versucht, sich selbst eine TPA-Anfrage zu senden
+    self: '%teracore_prefix% &c✖ Du kannst dir selbst keine TPA-Anfrage senden!'
+
     # Nachricht, wenn der Zielspieler keine TPA-Anfragen erlaubt
     blocked: '%teracore_prefix% &c✖ Der Spieler hat TPA-Anfragen deaktiviert!'
 

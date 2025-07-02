@@ -9,6 +9,9 @@ command:
     # Message when a request to the player already exists
     failed: '%teracore_prefix% &c✖ You have already sent a request to this player!'
 
+    # Shown when a player tries to send a TPA request to themselves
+    self: '%teracore_prefix% &c✖ You cannot send a TPA request to yourself!'
+
     # Message when the target player has disabled TPA requests
     blocked: '%teracore_prefix% &c✖ The player has disabled TPA requests!'
 

@@ -72,6 +72,10 @@ public class teleportask implements CommandExecutor {
 									DefaultConfig.getConfig().getString("message.player_not_found")));
 							return true;
 						}
+						if(trust.getUniqueId().equals(player.getUniqueId())){
+							player.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.cancel.self")));
+							return true;
+						}
 						if(command.getName().equalsIgnoreCase("tpacancel")){
 							if(checkAndRemove(player.getUniqueId(), trust.getUniqueId())){
 								trust.sendMessage(PlaceHolder.replacePlaceholder(config.getString("command.args1.cancel.trust").replace("%player%", player.getName())));
