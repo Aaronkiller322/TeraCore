@@ -86,3 +86,7 @@ commands:
     usage: /<command>
   tpadeny:
     usage: /<command>
+  tpatoggle:
+    usage: /<command>
+  tpacancel:
+    usage: /<command>

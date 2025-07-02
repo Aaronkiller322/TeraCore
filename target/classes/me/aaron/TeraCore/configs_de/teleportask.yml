@@ -2,34 +2,52 @@ command:
   # Hilfe-Nachricht, die den Spielern erklärt, wie der Teleport-Befehl verwendet wird
   help: '%teracore_prefix% &e❓ &7/%command% <Spieler>'
 
-  # Argument 1: Teleportiert den Spieler zu einer Location oder einem anderen Spieler
   args1:
-
     # Nachricht bei gesendeter Anfrage
     quest: '%teracore_prefix% &e📨 &7Deine &e/%command% &7-Anfrage wurde erfolgreich gesendet!'
 
+    # Nachricht, wenn bereits eine Anfrage an den Spieler besteht
     failed: '%teracore_prefix% &c✖ Du hast dem Spieler bereits eine Anfrage gesendet!'
 
+    # Nachricht, wenn der Zielspieler keine TPA-Anfragen erlaubt
+    blocked: '%teracore_prefix% &c✖ Der Spieler hat TPA-Anfragen deaktiviert!'
+
+    # Nachricht, wenn kein TPA-Angebot vom angegebenen Spieler vorliegt
     empty: '%teracore_prefix% &c✖ Der Spieler &e%trust_name% &chat dir keine Anfrage gesendet!'
+
+    cancel:
+      # Wird dem Spieler angezeigt, der die Anfrage empfangen hat
+      trust: '%teracore_prefix% &c✖ &e%player% &chat die TPA-Anfrage abgebrochen!'
+
+      # Wird dem Spieler angezeigt, der die eigene Anfrage abbricht
+      player: '%teracore_prefix% &c✖ Du hast die TPA-Anfrage abgebrochen!'
+
+      # Wird angezeigt, wenn ein Abbruch versucht wird, obwohl keine Anfrage vorliegt
+      failed: '%teracore_prefix% &c✖ Der Spieler hat keine TPA-Anfrage erhalten!'
 
     trust:
       text:
+        # Nachrichten beim Empfang einer Anfrage
         - '%teracore_prefix% &e📥 &7Du hast eine %command%-Anfrage erhalten!'
         - '%teracore_prefix% &e👤 &7Von: &e%trust_name%'
         - '%teracore_prefix% &7Antworte mit &a%accept% &7oder &c%deny%&7.'
 
       hover:
         accept:
+          # Hover-Text und Klick-Effekt für "Annehmen"
           text: '&aAnnehmen'
           hover: '&a✅ Anfrage annehmen'
           click: '/tpaccept %trust_name%'
+          # Erfolgsnachricht für Sender und Empfänger
           player: '%teracore_prefix% &a✔ Deine Teleport-Anfrage wurde angenommen!'
           trust: '%teracore_prefix% &a✔ Du hast die Teleport-Anfrage angenommen!'
 
         deny:
+          # Hover-Text und Klick-Effekt für "Ablehnen"
           text: '&cAblehnen'
           hover: '&c❌ Anfrage ablehnen'
           click: '/tpadeny %trust_name%'
+          # Ablehnungsnachricht für Sender und Empfänger
           player: '%teracore_prefix% &c✘ Deine Teleport-Anfrage wurde abgelehnt!'
           trust: '%teracore_prefix% &c✘ Du hast die Teleport-Anfrage abgelehnt!'
 
@@ -39,3 +57,35 @@ command:
       tpahere: 'teracore.tpahere'     # Berechtigung für /tpahere
       tpaccept: 'teracore.tpaccept'   # Berechtigung für /tpaccept
       tpadeny: 'teracore.tpadeny'     # Berechtigung für /tpadeny
+      tpacancel: 'teracore.tpacancel' # Berechtigung für /tpacancel
+
+    timer:
+      # Aktiviert den Timer für das Ablaufen von TPA-Anfragen
+      enabled: true
+      second: 60  # Dauer in Sekunden
+      message:
+        # Warnung für den Empfänger kurz vor Ablauf
+        trust: '%teracore_prefix% &e⏳ &cDie TPA-Anfrage läuft in &e%time% &cSekunden ab!'
+
+        # Nachricht an den Sender, wie viel Zeit noch bleibt
+        player: '%teracore_prefix% &e⌛ &cDu hast &e%time% &cSekunden Zeit zu reagieren!'
+
+        # Wird angezeigt, wenn die Anfrage automatisch abläuft
+        finish: '%teracore_prefix% &e⌛ &cDie TPA-Anfrage ist abgelaufen.'
+
+    setting:
+      sound:
+        # Aktiviert Soundeffekte bei TPA-Aktionen
+        enabled: true
+        type: UI_BUTTON_CLICK  # Soundtyp z.B. UI, BLOCK_NOTE, ENTITY_...
+        pitch: 1               # Tonhöhe (1 = Standard)
+        volume: 0.3            # Lautstärke (0.0–1.0)
+
+      # Teleport-Partikeleinstellungen bei TPA-Aktionen
+      particle:
+        enabled: true
+        color: WHITE      # Farbe der Partikel (z.B. RED, CYAN, PURPLE)
+        size: 1.5          # Größe des Partikeleffekts
+        radius: 1          # Radius um den Spieler
+        height: 2.5        # Höhe des Effekts über dem Boden
+        spread: 0.5        # Streuung der Partikel
